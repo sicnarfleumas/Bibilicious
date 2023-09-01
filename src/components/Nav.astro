@@ -1,0 +1,82 @@
+---
+
+import bottomdivider from '../images/bottomdivider.svg'
+import '@fontsource/berkshire-swash';
+
+---
+
+
+<section id="Navigation">
+    <nav>
+        <div class="left">
+            <h1>Bibilicious</h1>
+        </div>
+
+        <div class="nav-items">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+    
+    <div class="divider">
+        <img src={bottomdivider} alt="divider">
+    </div>
+
+
+</section>
+
+
+
+
+<style>
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(180deg, #FFC8CF 0%, #FFDCB0 46.84%, #FFEC9A 82.89%);
+
+        padding: 0 5%;    
+
+    }
+
+    #img  {
+        width: 100%; 
+        height: 0.25rem;
+    }
+
+    h1 {
+        color: #1D1C1A;
+        text-align: center;
+        font-family: 'Berkshire Swash', sans-serif;
+        font-size: 3rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    a {
+        color: #1D1C1A;
+        text-align: center;
+        font-family: Inter;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: #5b5b5b;
+    }
+
+    .right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2.5rem;
+    }
+</style>
