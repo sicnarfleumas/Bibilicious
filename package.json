@@ -1,5 +1,5 @@
 {
-  "name": "bibi-core",
+  "name": "core",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,7 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource/berkshire-swash": "^5.0.5",
-    "astro": "^2.7.4"
+    "@astrojs/mdx": "^1.1.0",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "astro": "^3.1.0"
   }
 }
