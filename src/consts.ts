@@ -1,5 +1,2 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
-export const SITE_TITLE = 'Astro Blog';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SITE_TITLE = 'Bibilicious | English ⇄ Japanese Translations';
+export const SITE_DESCRIPTION = 'Welcome to Bibilicious, where I weave linguistic artistry with English, Japanese, and Tamil. Let\'s transform words into literary marvels. Explore Bibilicious today!';
