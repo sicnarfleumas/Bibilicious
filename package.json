@@ -15,6 +15,7 @@
     "@astrojs/sitemap": "^3.0.0",
     "@fontsource-variable/cabin": "^5.0.16",
     "@fontsource/berkshire-swash": "^5.0.12",
+    "@fontsource/oxygen": "^5.0.8",
     "astro": "^3.1.0"
   }
 }

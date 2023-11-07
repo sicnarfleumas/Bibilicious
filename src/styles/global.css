@@ -45,8 +45,9 @@ b {
 	font-weight: 700;
 }
 a {
+	font-size: 1.25rem;
 	font-weight: 400;
-	transition: font-weight 0.3s ease;
+	transition: 0.3s ease;
 	text-decoration: none;
 	text-transform: uppercase;
 }
@@ -54,11 +55,13 @@ a, a:visited, a:hover, a:active {
 	color: inherit;
 }
 a:hover {
+	
 	font-weight: 100;
 	color: #333333;
 }
 p {
-	margin-bottom: 1em;
+	font-family: 'Oxygen', sans-serif;
+	font-weight: 400;
 }
 .prose p {
 	margin-bottom: 2em;
@@ -101,10 +104,12 @@ hr {
 .logo {
 	font-family: 'Berkshire Swash', sans-serif;
 	text-transform: none;
-	font-size: 1.5rem;
+	font-size:	2rem;
 }
 
 .logo:hover {
+	text-decoration: none;
+	color: #000;
 	font-weight: inherit;
 }
 
