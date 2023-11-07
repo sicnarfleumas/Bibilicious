@@ -13,10 +13,7 @@ body {
 	
 }
 
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	}
+
 h1,
 h2,
 h3,
@@ -26,6 +23,7 @@ h6 {
 	margin: 0 0 0.5rem 0;
 	color: #000;
 	line-height: 1.2;
+	text-transform: uppercase;
 }
 h1 {
 	font-size: 3.052em;
@@ -56,7 +54,8 @@ a, a:visited, a:hover, a:active {
 	color: inherit;
 }
 a:hover {
-	font-weight: 700;
+	font-weight: 100;
+	color: #333333;
 }
 p {
 	margin-bottom: 1em;
@@ -81,7 +80,6 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
 	border-radius: 2px;
 }
 pre {
@@ -92,14 +90,12 @@ pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
 }
 
 .logo {

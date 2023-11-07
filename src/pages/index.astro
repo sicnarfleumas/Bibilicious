@@ -3,7 +3,12 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BlogHolder from '../components/BlogHolder.astro';
+import newsletter from '../components/Newsletter.astro';
+import About from '../components/About.astro';
+
+
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Newsletter from '../components/Newsletter.astro';
 ---
 
 <!doctype html>
@@ -13,9 +18,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Header title={SITE_TITLE} />
+
 		<main>
+			<About />
+
 			<BlogHolder />
+
+			<Newsletter />
 		</main>
+
 		<Footer />
 	</body>
 </html>

@@ -1,7 +1,4 @@
 ---
-// Import Components
-import HeaderLink from './HeaderLink.astro';
-// import { SITE_TITLE } from '../consts';
 
 import '@fontsource/berkshire-swash';
 ---
@@ -16,10 +13,10 @@ import '@fontsource/berkshire-swash';
 
 		<ul>
 			<li>
-				<a href="/blog">Blog</a>
+				<a href="#About">About</a>
 			</li>
 			<li>
-				<a href="/contact">Contact</a>
+				<a href="/blog">Blog</a>
 			</li>
 		</ul>
 		
@@ -49,6 +46,10 @@ import '@fontsource/berkshire-swash';
 		display: flex;
 		list-style: none;
 		gap: 3rem;
+	}
+
+	a:hover {
+		color: gray;
 	}
 
 </style>
