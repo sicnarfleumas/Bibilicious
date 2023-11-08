@@ -1,16 +1,56 @@
 ---
-title: 'First post'
+title: 'こんにちは！'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 08 2022'
 heroImage: '/blog-placeholder-about.jpg'
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+## 自己紹介
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+始めまして！インド出身のビビと申します。約２年間ほど日本語の勉強をしています。趣味は運動と読書です。暇な時には折り紙をしたり、ウクレレを弾いたりすることが好きです。大学では英語文学を専攻しましたが、それを選んだのは本が好きなだけでなく、言語として英語が好きだからです。私は多くの日本語学習者と同様に、アニメをきっかけに日本語を学び始めました。
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+一番好きなアニメはワンピースです。これは家族から私の２３歳の誕生日ケーキでした！家族がやっぱりすごいな。。。
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+![img of one piece cake](../../assets/images/blog-1/cake.jpg)
+
+
+## ブログの始めた理由
+
+このブログを始めた理由はいくつかありますので、ご紹介させていただきます。
+
+1. **ライティングの情熱**: 子供の頃から書くことが大好きで、自分の気持ちを完全に伝えるのは書くときだけだと思います。以前から言語に興味がありましたが、日本語の勉強を始めたことでこの情熱がさらに高まりました。人生の道も大きく変わりました。
+
+2. **翻訳者への夢**: 人生の最終目標が翻訳者になることです。以前は目標がなかったのですが、今は日本語だけでなく、日本社会や文化をより深く理解したいと思います。そのために、日本語力を向上させて翻訳にも挑戦してみたいです。
+
+3. **コミュニケーション**: このブログを通じて日本語や日本に興味を持っている方と繋がったり話したりしたいです。それが私にとって一番大切なことです。または、教育的なだけでなく、世界中の人々と一緒に日本語の勉強を楽しむことを目指していきたと思います。
+
+## コンテンツ
+
+コンテンツ的には、役に立つ勉強方法やJLPTについても含めた内容を書きたいと思います。また、書評や翻訳などについてもできるだけ取り上げたいです。それ以外にも、自分の好きなことや面白いと思うコンテンツを作りたいと思います。
+
+## 結び
+
+このブログを読んでくださってありがとうございます。私の下手くそ日本語を許してあげてください。よろしくお願いします！
+
+Hey there, fellow 人間! Thank you for checking my blog out. I really appreciate you.
+
+I'm Bibi from India, and I have been studying Japanese for about two years now. My hobbies include working out, watching anime, and occasionally doing origami or playing the ukulele. In university, I majored in English Literature not for the books I enjoyed reading but for the language in which I read them.
+
+Like many Japanese learners out there, my passion for the Japanese language began with watching anime. One Piece was my first "official" anime, and it will forever hold a special place in my heart. 
+
+This was my 23rd birthday cake! Families really know how to make your birthday special. :’)
+
+![img of one piece cake](../../assets/images/blog-1/cake.jpg)
+
+I started this blog for several reasons. Firstly, I have always loved writing because it allows me to express myself fully, a passion that has grown since childhood. This love for writing also extends to my fascination with languages. While I have always been interested in learning new languages, my enthusiasm has reached new heights ever since I discovered my love for Japanese. 
+
+Secondly, studying Japanese has sparked my dream of becoming a translator. Before delving into the language, I didn't have a clear goal in life, but now I aspire to live in Japan where I can use Japanese and deepen my understanding of the culture more. Therefore, I figured that a personal blog would be an ideal platform for honing my skills and improving overall proficiency, both as a learner and an aspiring translator of the language.
+
+Lastly, and perhaps most importantly, this blog serves as a means to connect with fellow learners who share similar interests. So, this blog serves not only an educational purpose but also as a platform where I can share my learning journey with people from around the world and foster meaningful connections. 
+
+In terms of content, I share the learning methods that have helped me the most, including the JLPT. I also write reviews of books that I find interesting, both educational and non-educational, and simply anything I think is worth writing about. I hope to expand my content over time.
+
+Thank you so much for taking the time to read this. 
+
+Please feel free to leave your comments below! I cannot wait to connect with you.

@@ -1,10 +1,9 @@
 ---
 title: 'Points and Practice (Book Review)'
-description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
+description: 'I had just two and a half months before my N3 exam, and I was in a panic because my reading skills were below average. I searched online for the "perfect book"'
 pubDate: 'Jul 01 2022'
 heroImage: '/blog-placeholder-1.jpg'
 ---
-
 I recently found myself in a situation where I had just two and a half months before my N3 Japanese exam, and I was in a bit of a panic because my reading skills were far below average. I scoured the internet, trying to find the perfect book to help me tackle this section. While I had gathered a few resources for other sections, it seemed almost impossible to find a comprehensive one for reading. It's worth noting that I could have used the popular Shin Kanzen or Sou Matome series, but I simply didn't have the time or patience to work through them. Moreover, living in India, where Japanese learning resources are limited and often overpriced, made my quest even more challenging. With these circumstances in mind, I was fortunate enough to stumble upon a book that appeared to be the ideal companion for my last two months of intensive preparation. 
 
 In this blog post, I aim to provide a thorough review of this book for two main reasons. Firstly, I couldn't find many reviews of this book online, which gave me pause before making the purchase. I hope that my review can be of help to someone else facing a similar dilemma. Secondly, I believe this book deserves a review because it not only helped me pass the reading section but almost ace it. Everyone has their unique study methods, but I'm here to share the approach that worked exceptionally well for me.

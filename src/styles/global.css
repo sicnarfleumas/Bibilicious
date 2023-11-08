@@ -92,6 +92,7 @@ pre {
 pre > code {
 	all: unset;
 }
+
 blockquote {
 	padding: 0 0 0 20px;
 	margin: 0px;
@@ -111,6 +112,12 @@ hr {
 	text-decoration: none;
 	color: #000;
 	font-weight: inherit;
+}
+
+.section-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 0rem;
 }
 
 @media (max-width: 720px) {

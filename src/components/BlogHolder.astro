@@ -10,18 +10,23 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 
+
+<div class="section-wrapper">
+    
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 1440 52" fill="none">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1440 40.2638H1422C1402.8 40.2638 1365.6 40.2638 1329.6 35.3738C1292.4 30.4837 1255.2 20.7035 1218 16.7914C1182 12.8794 1144.8 14.8355 1107.6 17.7695C1070.4 20.7035 1034.4 24.6156 997.2 21.6815C960 18.7475 922.8 8.96733 885.6 12.8794C849.6 16.7914 812.4 34.3958 775.2 35.3738C738 36.3517 702 20.7035 664.8 17.7695C627.6 14.8355 590.4 24.6156 554.4 31.4617C517.2 38.3078 480 42.2199 442.8 44.1759C405.6 46.1319 369.6 46.1319 332.4 45.1539C295.2 44.1759 258 42.2199 222 33.4177C184.8 24.6156 147.6 8.96733 110.4 3.09927C74.4 -2.76886 37.2 1.14323 18 3.09927L0 5.05531V52H18C37.2 52 74.4 52 110.4 52C147.6 52 184.8 52 222 52C258 52 295.2 52 332.4 52C369.6 52 405.6 52 442.8 52C480 52 517.2 52 554.4 52C590.4 52 627.6 52 664.8 52C702 52 738 52 775.2 52C812.4 52 849.6 52 885.6 52C922.8 52 960 52 997.2 52C1034.4 52 1070.4 52 1107.6 52C1144.8 52 1182 52 1218 52C1255.2 52 1292.4 52 1329.6 52C1365.6 52 1402.8 52 1422 52H1440V40.2638Z" fill="#B7FFC1"/>
-    </svg>
-  
+  </svg>
+
 <section class="blog">
+
     
     <h2>Blogs and Posts</h2>
 
     {
         posts.map((post) => (
 
-            <div class="wrapper">
+           
+
                 <a href={`/blog/${post.slug}/`}>
 
                     <div class="left">
@@ -37,7 +42,7 @@ const posts = (await getCollection('blog')).sort(
                     </div>
                    
                 </a>
-            </div>
+            
         ))
     }
     
@@ -46,33 +51,40 @@ const posts = (await getCollection('blog')).sort(
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 1440 52" fill="none">
 	<path fill-rule="evenodd" clip-rule="evenodd" d="M0 11.7362H18C37.2 11.7362 74.4 11.7362 110.4 16.6262C147.6 21.5163 184.8 31.2965 222 35.2086C258 39.1206 295.2 37.1645 332.4 34.2305C369.6 31.2965 405.6 27.3844 442.8 30.3185C480 33.2525 517.2 43.0327 554.4 39.1206C590.4 35.2086 627.6 17.6042 664.8 16.6262C702 15.6483 738 31.2965 775.2 34.2305C812.4 37.1645 849.6 27.3844 885.6 20.5383C922.8 13.6922 960 9.78015 997.2 7.8241C1034.4 5.86809 1070.4 5.86809 1107.6 6.8461C1144.8 7.8241 1182 9.78015 1218 18.5823C1255.2 27.3844 1292.4 43.0327 1329.6 48.9007C1365.6 54.7689 1402.8 50.8568 1422 48.9007L1440 46.9447V0H1422C1402.8 0 1365.6 0 1329.6 0C1292.4 0 1255.2 0 1218 0C1182 0 1144.8 0 1107.6 0C1070.4 0 1034.4 0 997.2 0C960 0 922.8 0 885.6 0C849.6 0 812.4 0 775.2 0C738 0 702 0 664.8 0C627.6 0 590.4 0 554.4 0C517.2 0 480 0 442.8 0C405.6 0 369.6 0 332.4 0C295.2 0 258 0 222 0C184.8 0 147.6 0 110.4 0C74.4 0 37.2 0 18 0H0V11.7362Z" fill="#A7DAE3"/>
   </svg>
+</div>
 
 <style>
     .blog {
         display: flex;
+        text-align: center;
         flex-direction: column ;
-        align-items: center;
-        justify-content: center;
         gap: 5rem;
-
-        padding: 5rem 0;
-
-        margin-top: -.25%;
-
+        padding: 5rem 15%;
         background: linear-gradient(180deg, #B7FFC1 0%, #A7DAE4 100%);
     }
 
+    
+
     .description {
-        width: 59ch;
+        display: block;
+        max-width: 40ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .wrapper {
+        display:flex;
     }
 
     a {
         display: flex;
         justify-content: space-between;
-        gap: 2rem;
+        text-align: left;
         transition: 0.2s ease;
-        width: max-content;
     }
+
+    
 
     
 
@@ -85,5 +97,11 @@ const posts = (await getCollection('blog')).sort(
     p {
         text-transform: none;
     }
+
+    .section-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
 </style>
     
