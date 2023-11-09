@@ -13,10 +13,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
+		<script src="../js/progressbar.js"></script>
 	</head>
 
 	<body>
 		<Header />
+		<div id="progress-bar"></div>
 		<main>
 			<article>
 
@@ -94,5 +96,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	}
 	.last-updated-on {
 		font-style: italic;
+	}
+
+	#progress-bar {
+		background-color: lightblue;
+		position: absolute; /* Initial position */
+		width: 100%;
+		top: 0;
+		box-sizing: border-box;
+		--progress: 0;
+		position: fixed;
+		height: .5rem;
+		width: var(--progress);
 	}
 </style>
