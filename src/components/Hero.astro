@@ -1,7 +1,5 @@
 ---
-import { Image } from "astro:assets";
 
-import HeroImg from "/hero.png"
 ---
 
 <section class="about">
@@ -43,5 +41,35 @@ import HeroImg from "/hero.png"
         font-size: 1rem;
         text-transform: uppercase;
         width: 45ch;
+    }
+
+    @media screen and (max-width: 768px) {
+        .about {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding: 15rem 15%;
+        }
+
+        .right {
+            order: 2;
+        }
+
+        .left {
+            order: 1;
+        }
+
+        h2 {
+            text-align: justify;
+        }
+
+        img {
+            width: 25rem;
+        }
+        
+
+        
+        
     }
 </style>

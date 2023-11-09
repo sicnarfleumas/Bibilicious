@@ -4,12 +4,19 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
  
+ * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
 
 
 body {
 	font-family: 'Cabin Variable', sans-serif;
 	margin: 0;
 	padding: 0;
+	overflow-x: hidden;
+
 	
 }
 
@@ -121,11 +128,33 @@ hr {
 }
 
 @media (max-width: 720px) {
-	body {
-		font-size: 18px;
+
+	
+	
+	h2 {
+		font-size: 1.75rem;
+		text-align: center;
 	}
-	main {
-		padding: 1em;
+
+	p {
+		font-size: 1rem !important;
+		width: 100% !important;
+		text-align: justify;
+		line-height: 1.25;
+		text-align: left;
+		font-size: 1rem;
+	}
+
+	.logo {
+		font-size: 2rem;
+	}
+	
+	.divider-top {
+		margin-bottom: -1.5%;
+	}
+	
+	.divider-bottom {
+		margin-top: -1%;
 	}
 }
 
