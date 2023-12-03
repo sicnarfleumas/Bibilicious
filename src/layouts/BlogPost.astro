@@ -13,7 +13,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<script src="../js/progressbar.js"></script>
+		<script src="../components/js/progressbar.js"></script>
 	</head>
 
 	<body>
@@ -109,5 +109,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		position: fixed;
 		height: .5rem;
 		width: var(--progress);
+	}
+
+	@media screen and (max-width: 720px) {
+		.prose {
+			padding: 0;
+		}
+
+		p {
+			line-height: 2;
+
+		}
+		
 	}
 </style>
