@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import bitmoji from "../assets/Yup.png"
+import bitmoji from "../assets/images/Yup.png"
 
 ---
 
@@ -8,12 +8,7 @@ import bitmoji from "../assets/Yup.png"
 
     <div class="wrapper">
         <div class="left">
-            <Image
-                src={bitmoji}
-                alt="Bibilicious Bitmoji"
-                width={50}
-                height={50}
-            />
+           
         </div>
         <div class="right">
             <h2 class="title">
@@ -38,5 +33,22 @@ import bitmoji from "../assets/Yup.png"
         display: flex;
         padding: 2rem 20%;
     }
+
+    .left  {
+        width: 25rem;
+        flex-shrink: 0;
+        background: url("/Yup.png") -0.238px -16.718px / 100.116% 110.387% no-repeat;
+
+        margin-top: -7rem;
+        margin-bottom: -2rem;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+   
 
 </style>

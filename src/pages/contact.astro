@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Form from '../components/ContactForm.astro';
 import Coffee from '../components/Coffee.astro';
+import Footer from '../components/Footer.astro';
 
 
 
@@ -22,6 +23,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
             <Form />
             <Coffee />
+            <Footer />
 
 		</main>
 
@@ -29,5 +31,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 </html>
 
 <style>
-    
+	main {
+		height: 500vh;
+	}
 </style>
