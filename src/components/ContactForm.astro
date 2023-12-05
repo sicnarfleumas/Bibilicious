@@ -1,0 +1,146 @@
+---
+
+---
+
+<section class="contact">
+
+<div class="contact-form">
+
+    <h1>Let’s Make Words Dance! 💃🕺</h1>
+
+    <div class="wrapper">
+
+        <div class="left">
+
+            <p>
+                I'm pumped that you're thinking about diving into the awesome world of translations! 
+                Whether you’ve got a quirky document, a cool article, or just something super random that needs translating between Japanese, Tamil, and English, I’m here to make it happen.
+            </p>
+
+        </div>
+
+    <div class="right">
+
+        <form action="submit_handler.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Name" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+        
+            <label for="languages">Languages:</label>
+
+            <select id="languages" name="languages">
+                <option value="" disabled selected>Select a language</option>
+                <option value="english">English</option>
+                <option value="japanese">Japanese</option>
+                <option value="tamil">Tamil</option>
+            </select>
+        
+            <label for="docType">Document Type:</label>
+            <select id="docType" name="docType" aria-placeholder="Document Type">
+                <option value="" disabled selected>Document Type</option>
+                <option value="article">Article</option>
+                <option value="blog">Blog</option>
+                <option value="email">Email</option>
+                <option value="socialMedia">Social Media Post</option>
+            </select>
+        
+            <label for="projectDetails">Project Details (max 200 words):</label>
+            <textarea 
+                id="projectDetails" 
+                name="projectDetails" 
+                rows="4" 
+                cols="50" 
+                maxlength="200" 
+                placeholder="Project Details" 
+                required>
+            </textarea>
+        
+            <button>Submit</button>
+        </form>
+
+    </div>
+
+    </div>
+
+</div>
+</section>
+
+<style>
+    .contact {
+        padding: 5rem 20%;
+    }
+    
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 5rem;
+        border-radius: 1.5625rem;
+        background: #FFF;   
+    }
+
+    p {
+        width: 40ch;
+    }
+
+    .wrapper {
+        display: flex;
+        align-content: space-between;
+        gap: 2rem;
+    }
+    
+    
+    label {
+        position: absolute;
+        left: -9999px;
+    }
+
+    form {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    input {
+        box-sizing: border-box; 
+        margin: 0; 
+        padding: 0; 
+        border-width: 0 0 1px 1px;
+        outline: none; 
+        background-color: transparent; 
+        
+        padding: .5rem;
+
+    }
+
+    select {
+        box-sizing: border-box;
+        margin: 0; 
+        padding: .5rem;
+       
+        border-width: 0 0 1px 1px;
+        outline: none; 
+        background-color: transparent; 
+        
+    }
+
+    
+    button {
+        margin: 0;
+        padding: 0;
+        border: 1px solid black;
+        background: none;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+        outline: none;  
+    }
+
+    button:hover {
+        background-color: black;
+        color: #FFF;
+    }
+</style>
+

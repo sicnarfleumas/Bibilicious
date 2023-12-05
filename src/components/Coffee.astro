@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import bitmoji from "../assets/Yup.png"
+
+---
+
+<section class="coffee">
+
+    <div class="wrapper">
+        <div class="left">
+            <Image
+                src={bitmoji}
+                alt="Bibilicious Bitmoji"
+                width={50}
+                height={50}
+            />
+        </div>
+        <div class="right">
+            <h2 class="title">
+                Support The Blog!!
+            </h2>
+            <p>
+                Love what you're reading on my blog? You can be a part of the fun by buying me a coffee! Your support keeps the good vibes flowing and the content coming. Whether it's a one-time caffeine boost or a recurring sip, every drop counts – thanks a latte for being awesome!
+            </p>
+            <a href="https://www.buymeacoffee.com/bibilicious" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+        </div>
+    </div>
+
+</section>
+
+<style>
+    .coffee {
+        background-color: #FFFFFF;
+    }
+
+    .wrapper {
+        display: flex;
+        padding: 2rem 20%;
+    }
+
+</style>
