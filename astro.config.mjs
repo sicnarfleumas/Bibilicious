@@ -10,7 +10,6 @@ export default defineConfig({
     sitemap(),
     react(),
   ],
-
   experiments: {
     api: true,
   },
