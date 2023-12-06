@@ -3,6 +3,9 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Coffee from '../components/Coffee.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Affiliate from '../components/Affiliate.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -17,9 +20,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	</head>
 
 	<body>
-		<Header />
-		<div id="progress-bar"></div>
+		
 		<main>
+			<Header />
+			<div id="progress-bar"></div>
 			<article>
 
 				<div class="hero-image">
@@ -43,50 +47,46 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					</div>
 					<slot />
 				</div>
+				<Affiliate />
+
 			</article>
+
+			<Newsletter />
+			<Coffee />
+			<Footer />
 		</main>
-		<Footer />
 	</body>
 </html>
 
 
 <style>
 	
-	main {
-		width: calc(100% - 2em);
-		max-width: 100%;
-		margin: 0;
+	article {
+		display: flex;
+		flex-direction: column;
+		padding: 0% 20%;
 	}
-	.hero-image {
-		width: 100%;
-	}
+	
 	.hero-image img {
 		display: block;
 		margin: 0 auto;
-		border-radius: 12px;
+		border-radius: 1rem;
 	}
 	.prose {
-		width: 720px;
-		max-width: calc(100% - 2em);
 		margin: auto;
-		padding: 1em;
 		color: black;
 		line-height: 2.5;
 	}
 	.title {
-		margin-bottom: 1em;
-		padding: 1em 0;
+		padding: 2rem 0;
 		text-align: center;
 		line-height: 1;
 	}
 	.title h1 {
 		text-align: center;
-		font-family: 'Oxygen', sans-serif;
-		font-size: 2.25rem;
-		font-style: normal;
+		font-size: 2rem;
 		font-weight: 700;
 		line-height: normal;
-		text-transform: capitalize;
 		margin: 0 0 0.5em 0;
 	}
 
@@ -99,6 +99,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		font-style: italic;
 	}
 
+	blockquote {
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 2px solid #333;
+}
+
 	#progress-bar {
 		background-color: lightblue;
 		position: absolute; /* Initial position */
@@ -110,6 +116,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		height: .5rem;
 		width: var(--progress);
 	}
+
 
 	@media screen and (max-width: 720px) {
 		.prose {

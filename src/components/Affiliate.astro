@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import book from "../assets/images/blog-1/Points&Pactise.jpg"
+---
+
+<section class="affiliate">
+    <div class="left">
+        <h2>CHECK IT OUT HERE!</h2>
+        <p>The following are affiliate links and I would appreciate it if you guys use them as it helps me run this website without having to rely on ads 🙂</p>
+        <a href="">VIEW ON AMAZON</a>
+    </div>
+
+    <Image 
+        src={book}
+        alt="Points and Practise Book"
+        class="Image"
+        />
+
+</section>
+
+
+<style>
+    .affiliate {
+        display: flex;
+        margin: 5% 0%;
+        padding: 5%;
+        border-radius: 3.125rem;
+        background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+    }
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    a {
+        display: flex;
+        width: 14.76638rem;
+        padding: 0.875rem 2.6875rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+        border-radius: 1.5625rem;
+        background: #AFEEEE;
+
+        color: #000;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .Image {
+        border-radius: 3.125rem;
+        border: 10px solid #FFC0CB;
+    }
+
+
+
+</style>

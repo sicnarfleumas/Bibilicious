@@ -4,8 +4,7 @@
 import '../styles/global.css';
 
 import '@fontsource/berkshire-swash';
-import '@fontsource/oxygen';
-import '@fontsource-variable/cabin';
+import '@fontsource-variable/inter';
 
 interface Props {
 	title: string;
@@ -32,14 +31,12 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 
 <!-- Preload the Berkshire Swash font to ensure faster font loading -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter&display=swap" />
 
 
 <!-- Stylesheet link for the Berkshire Swash font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap" />
 
 
 <!-- Canonical URL -->

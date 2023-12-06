@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import bitmoji from "../assets/images/Yup.png"
 
 ---
 
@@ -15,7 +13,7 @@ import bitmoji from "../assets/images/Yup.png"
                 Support The Blog!!
             </h2>
             <p>
-                Love what you're reading on my blog? You can be a part of the fun by buying me a coffee! Your support keeps the good vibes flowing and the content coming. Whether it's a one-time caffeine boost or a recurring sip, every drop counts – thanks a latte for being awesome!
+                Love what you're reading on my blog? You can be a part of the fun by buying me a coffee! Your support keeps the good vibes flowing and the content coming. Whether it's a one-time caffeine boost or a recurring sip, every drop counts – thanks a <span>latte</span> for being awesome!
             </p>
             <a href="https://www.buymeacoffee.com/bibilicious" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
@@ -27,6 +25,7 @@ import bitmoji from "../assets/images/Yup.png"
 <style>
     .coffee {
         background-color: #FFFFFF;
+        margin: 15% 0% 2.5%;
     }
 
     .wrapper {
@@ -35,10 +34,11 @@ import bitmoji from "../assets/images/Yup.png"
     }
 
     .left  {
-        width: 25rem;
+        width: 50%;
         flex-shrink: 0;
-        background: url("/Yup.png") -0.238px -16.718px / 100.116% 110.387% no-repeat;
-
+        background: url("../assets/images/Yup.png"), -0.238px -16.718px / 100.116% 110.387% no-repeat;
+        background-size: cover;
+        
         margin-top: -7rem;
         margin-bottom: -2rem;
     }
@@ -46,7 +46,11 @@ import bitmoji from "../assets/images/Yup.png"
     .right {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.25rem;
+    }
+
+    span {
+        font-weight: bold;
     }
 
    
