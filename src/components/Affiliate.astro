@@ -1,17 +1,22 @@
 ---
 import { Image } from "astro:assets";
 import book from "../assets/images/blog-1/Points&Pactise.jpg"
+
+const {AffiliateImg} = Astro.props;
+const {AffiliateLink = "https://www.buymeacoffee.com/bibilicious"} = Astro.props;
+const {AffiliateName = "VIEW ON AMAZON"} = Astro.props;
+
 ---
 
 <section class="affiliate">
     <div class="left">
         <h2>CHECK IT OUT HERE!</h2>
         <p>The following are affiliate links and I would appreciate it if you guys use them as it helps me run this website without having to rely on ads 🙂</p>
-        <a href="">VIEW ON AMAZON</a>
+        <a href={AffiliateLink}>{AffiliateName}</a>
     </div>
 
     <Image 
-        src={book}
+        src={AffiliateImg}
         alt="Points and Practise Book"
         class="Image"
         />
@@ -47,6 +52,7 @@ import book from "../assets/images/blog-1/Points&Pactise.jpg"
         color: #000;
         font-size: 1rem;
         font-style: normal;
+        text-transform: uppercase;
         font-weight: 700;
         line-height: normal;
     }
