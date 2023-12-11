@@ -3,17 +3,20 @@
 ---
 
 <footer>
-    <a href="/" class="logo">
-        Bibilicious
-    </a>
+    <div class="top">
+        <a href="/" class="logo">
+            Bibilicious
+        </a>
+    </div>
+    
 
     <div class="wrapper">
         <div class="info">
             <h2>
                 Contact
             </h2>
-            <a href="themostbibilicious@gmail.com" type="email">
-                themostbibilicious@gmail.com
+            <a href="bibilicious@gmail.com" type="email">
+                bibilicious@gmail.com
             </a>
             <p>India</p>
         </div>
@@ -38,39 +41,29 @@
             <a href="">My Top 10 Japanese Learning Resources For Grammar, Kanji and JLPT (As a Self-Learner)</a>
         </div>
     </div>
-    <h3>designed and developed by crafting clicks</h3>
 </footer>
 
 <style>
     footer {
-        display: flex;
-        flex-direction: column;
-        padding: 2.5% 20% 2%;
-
-        align-items: center;
-        gap: 5rem;
+        padding: 2.5% 20% 5%;
     }
 
-    h3 {
-        font-size: 1rem;
-        font-weight: 200;
+    .top {
+        text-align: center;
+        padding-bottom: 2.5rem;
     }
 
     .wrapper {
         display: flex;
-        justify-content: space-between;
-        gap: 2.5rem;
     }
 
     .info {
-        /* display: grid;
-        grid-template-columns: 1fr;
-        margin-right: 2rem;
-        gap: .5rem; */
-
         display: flex;
         flex-direction: column;
         gap: .5rem;
+        width: 55ch;
+
+        text-align: left;
     }
 
 
@@ -80,6 +73,9 @@
         font-weight: 400;
         line-height: normal;
         letter-spacing: 0.07rem;
+    }
 
+    a:hover {
+        text-decoration: none !important;
     }
 </style>

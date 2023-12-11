@@ -88,37 +88,5 @@ const posts = (await getCollection('blog')).sort(
 		transform: scale(1.02);
 		box-shadow: 0 0 0 4px #A6D8E5;
 	}
-	@media (max-width: 720px) {
-		* {
-			overflow-x: hidden;
-		}
-
-		main {
-			padding: 10% 1rem;
-			align-content: center;
-
-		}
-
-		ul {
-			flex-direction: column;
-
-
-		}
-
-		h4 {
-			font-size: 1.25rem;
-		}
-
-		p {
-			font-size: .95rem !important;
-			text-align: justify;
-			line-height: 2;
-			text-align: left;
-		}
-		img {
-			width: 70%;
-		}
-	}
-
 	
 </style>
