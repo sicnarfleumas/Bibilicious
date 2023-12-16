@@ -7,6 +7,7 @@ import Footer from '../components/Footer.astro';
 import Coffee from '../components/Coffee.astro';
 import Newsletter from '../components/Newsletter.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import ReadMore from '../components/ReadMore.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -55,8 +56,8 @@ const { title, description, pubDate, heroImage } = Astro.props;
 				</div>
 
 			</article>
-
 			<Newsletter />
+			<ReadMore />
 			<Coffee />
 			<Footer />
 		</main>

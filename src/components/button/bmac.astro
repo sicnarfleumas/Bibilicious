@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+
+import logo from "../../assets/images/bmc-logo-no-background.png"
+---
+
+
+<a href="https://www.buymeacoffee.com/bibilicious" target="_blank">
+    <Image
+        src={logo}
+        alt="Buy Me A Coffee Logo"
+        class="logo"
+        />
+    Donate
+
+</a>
+
+
+<style>
+    a {
+        display: flex;
+        align-items: center;
+        gap: .35rem;
+
+        padding: 1% 2.5%;
+
+        font-family: 'Inter', sans-serif !important;
+        text-transform: uppercase;
+        font-weight: 900 !important;
+        font-size: 1rem;
+
+        border: none;
+        border-radius: 15rem;
+
+        background-color: #abffb0;
+    }
+
+    .logo {
+        width: 1.15rem;
+    }
+
+    a:hover {
+        background-color: #fff;
+        text-decoration: none;
+        letter-spacing: 2px;
+        gap: 1rem;
+
+    }
+
+    a:hover .logo{
+        -webkit-transform: rotate(35deg);
+        -moz-transform: rotate(35deg);
+        -ms-transform: rotate(35deg);
+        transform: rotate(35deg);
+        transition: transform 0.5s ease;
+
+    }
+
+    
+</style>
