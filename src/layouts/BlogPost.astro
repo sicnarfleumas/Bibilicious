@@ -118,10 +118,20 @@ const { title, description, pubDate, heroImage } = Astro.props;
 		width: var(--progress);
 	}
 
+	/* Tablet */
+	@media screen and (max-width: 1024px) {
+		article {
+			padding: 2.5% 10%;
+		}
+
+		.title {
+		padding: 2.5rem 0;
+		}
+	}
 
 	@media screen and (max-width: 720px) {
-		.prose {
-			padding: 0;
+		article {
+			padding: 2.5% 5%;
 		}
 
 		p {

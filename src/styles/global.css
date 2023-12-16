@@ -76,10 +76,7 @@ p {
 .prose p {
 	margin-bottom: 2em;
 }
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
+
 input {
 	font-size: 16px;
 }
@@ -138,7 +135,13 @@ ol {
 	margin: 0;
 	padding: 0;
 }
-  
+
+/* Tablet */
+@media (max-width: 1024px) {
+	section {
+		padding: 2rem 5%;
+	}
+}
 
 @media (max-width: 720px) {
 
