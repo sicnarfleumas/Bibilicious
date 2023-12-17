@@ -1,13 +1,175 @@
 ---
+import { Image } from "astro:assets";
 
+import bibi from "../assets/images/fas.png";
 ---
 
 <section class="bento">
-    <div class="grid">
+        <div class="Hey">
+            <h2>Hey there! Welcome to my personal blog</h2>
+            <Image
+                src={bibi}
+                alt="Bibi"
+                class="Image"
+                />
+            <p>I'm Bibi, a language enthusiast and aspiring translator currently learning Japanese. I share learning resources and experiences that I have gathered over the past 2 years of studying the language. I also write about various topics I find interesting and provide translations for my own content. I hope to connect and grow with people who have similar interests and goals.</p>
+        </div>
+        <div class="Blog">
+            <h2>I love writing</h2>
+            <p>Writing has always been my way of expressing myself ever since I was a child. When I couldn't find the words to say, I would often turn to writing. It gives me a unique sense of identity that I have struggled to find in other areas. This blog is an extension of that identity, and I hope to nurture it alongside people who share my interests and love for the Japanese language.</p>
+            <a href="/blog">Blogs</a>
+        </div>
+        <div class="Newsletter">
+            <h2>Stay in the loop</h2>
+            <p>Enjoy reading my blogs? leave your email behind and I will ping you every time I post some new content.</p>
+            <!-- Form with a email field and a submit button -->
+            <form action="" method="post">
+                <input class="email" type="email" name="email" id="email" placeholder="Email" required>
+                <input class="button" type="submit" value="Subscribe">
+            </form>
+        </div>
 
-    </div>  
+        <div class="About">
+            <h2>About The Site</h2>
+            <p>I do not run ads on this website. The website runs on affiliate links to products that I personally use. You can also sponsor me on Buy Me A Coffee.</p>
+            <a href="https://www.buymeacoffee.com/bibilicious" target="_blank">Coffee</a>
+        </div>
+
+        <div class="Lang">
+            <h2>Languages</h2>
+            <ul>
+                <li>Japanese</li>
+                <li>English</li>
+                <li>Tamil</li>
+            </ul>
+        </div>
+
+        <div class="Hobbies">
+            <h2>Hobbies</h2>
+            <p>My hobbies include working out, reading, writing, watching anime/movies and vigorously learning as many Japanese songs as I can so that I can one day flawlessly sing them at karaoke. I also enjoy origami, playing the ukulele and skating to help relax my mind.</p>
+        </div>
 </section>
 
 <style>
+    .Image {
+        width: 5rem;
+    }
+    h2 {
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    p {
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 150%;
+    }
+
+    a {
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 150%;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .email {
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
+
+    .button {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
+
+    .button:hover {
+        background-color: #ccc;
+    }
+
+
+    .bento {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: auto;
+        grid-auto-flow: dense;
+
+        max-width: 1080px;
+        margin: 0% auto;
+
+        padding: 2.5% 0% 5%;
+
+
+        grid-gap: 1rem;
+    }
+
+    .Hey, .About, .Blog, .Newsletter, .Lang, .Hobbies {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 3rem 3rem;
+        border-radius: 1rem;
+    }
+
+    .Hey {
+        background-color: #FFB6C1;
+        grid-column: span 7;
+    }
+
+    .Blog {
+        background-color: #87CEEB;
+        grid-column: span 5;
+    }
+
+    .Newsletter {
+        background-color: #FFFACD;
+        grid-column: span 6;
+
+    }
+
+    .About {
+        background-color: #FFF;
+        grid-column: span 6;
+
+    }
+
+    .Lang {
+        background-color: #E6E6FA;
+        grid-column: span 2;
+
+    }
+
+    .Hobbies {
+        background-color: #C5CBE1;
+        grid-column: span 10;
+
+    }
 
 </style>
