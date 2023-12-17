@@ -46,10 +46,10 @@ const { title, description, pubDate, heroImage } = Astro.props;
 				
 				<div class="prose">
 					<div class="title">
-						<div class="date">
+						<div class="date" transition:name="blog_date">
 							<FormattedDate date={pubDate} />
 						</div>
-						<h1>{title}</h1>
+						<h1 transition:name="blog_title">{title}</h1>
 						<hr />
 					</div>
 					<slot />
