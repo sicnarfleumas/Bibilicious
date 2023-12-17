@@ -21,7 +21,7 @@ import bibi from "../assets/images/fas.png";
         <div class="Blog box">
             <h2>I love writing</h2>
             <p>Writing has always been my way of expressing myself ever since I was a child. When I couldn't find the words to say, I would often turn to writing. It gives me a unique sense of identity that I have struggled to find in other areas. This blog is an extension of that identity, and I hope to nurture it alongside people who share my interests and love for the Japanese language.</p>
-            <a href="/blog">Blogs</a>
+            <a href="/blog">Blog Posts <span>↗</span></a>
         </div>
         <div class="Newsletter box">
             <h2>Stay in the loop</h2>
@@ -36,15 +36,16 @@ import bibi from "../assets/images/fas.png";
         <div class="About box">
             <h2>About The Site</h2>
             <p>I do not run ads on this website. The website runs on affiliate links to products that I personally use. You can also sponsor me on Buy Me A Coffee.</p>
-            <a href="https://www.buymeacoffee.com/bibilicious" target="_blank">Coffee</a>
+            <a href="https://www.buymeacoffee.com/bibilicious" target="_blank">Coffee <span>↗</span></a>
         </div>
 
         <div class="Lang box">
             <h2>Languages</h2>
             <ul>
                 <li>Japanese</li>
-                <li>English</li>
                 <li>Tamil</li>
+                <li>English</li>
+               
             </ul>
         </div>
 
@@ -59,25 +60,33 @@ import bibi from "../assets/images/fas.png";
         width: 5rem;
     }
 
+    span {
+        font-size: 1.5rem;
+        border: 1.5px solid #333;
+        border-radius: 50%;
+        width : 1.5rem;
+        height: 1.5rem;
+        padding: 1.5%;
+    }
+    
     h2 {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         font-style: normal;
-        font-weight: 700;
+        font-weight: 900;
         line-height: normal;
     }
 
     p {
         font-size: 1rem;
         font-style: normal;
-        font-weight: 300;
-        line-height: 150%;
+        font-weight: 400;
+        line-height: 2;
     }
 
     a {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-style: normal;
         font-weight: 400;
-        line-height: normal;
     }
 
     ul {
@@ -124,18 +133,17 @@ import bibi from "../assets/images/fas.png";
 
 
     .bento {
+        padding: 2.5% 0% 5%;
+        
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-auto-rows: auto;
         grid-auto-flow: dense;
+        grid-gap: 1rem;
 
-        max-width: 1080px;
+        max-width: 60%;
         margin: 0% auto;
 
-        padding: 2.5% 0% 5%;
-
-
-        grid-gap: 1rem;
     }
 
     .Hey, .About, .Blog, .Newsletter, .Lang, .Hobbies {
@@ -198,7 +206,8 @@ import bibi from "../assets/images/fas.png";
         /* filter: grayscale(100%); */
         /* filter: contrast(150%); */
         /* filter: brightness(0.5); */
-        filter: blur(5px);
+        filter: blur(2.5px);
+        /* filter: opacity(0.5);    */
     }
     
     /* Tablet */

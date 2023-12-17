@@ -46,7 +46,7 @@ const posts = (await getCollection('blog')).sort(
 
     h2 {
         font-size: 2rem;
-        font-weight: 900;
+        font-weight: 700;
     }
 
     .wrapper {
@@ -61,8 +61,12 @@ const posts = (await getCollection('blog')).sort(
         justify-content: space-between;
     }
 
+    h4 {
+        font-weight: 600;
+    }
+
     .category {
-        font-weight: 700;
+        font-weight: 600;
     }
 
     .date {
@@ -98,12 +102,8 @@ const posts = (await getCollection('blog')).sort(
             padding: 0% 5%;
         }
 
-        h2 {
+        h2, h4, p {
             text-align: left;
-        }
-
-        p {
-            line-height: 2;
         }
 
         .wrapper {
