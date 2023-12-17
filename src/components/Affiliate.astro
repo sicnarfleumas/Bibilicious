@@ -5,6 +5,7 @@ import book from "../assets/images/blog-1/Points&Pactise.jpg"
 const {AffiliateImg} = Astro.props;
 const {AffiliateLink = "https://www.buymeacoffee.com/bibilicious"} = Astro.props;
 const {AffiliateName = "VIEW ON AMAZON"} = Astro.props;
+const {AffiliateAlt = "Book Recommendation"} = Astro.props;
 
 ---
 
@@ -17,7 +18,7 @@ const {AffiliateName = "VIEW ON AMAZON"} = Astro.props;
 
     <Image 
         src={AffiliateImg}
-        alt="Points and Practise Book"
+        alt={AffiliateAlt}
         class="Image"
         />
 
@@ -63,6 +64,33 @@ const {AffiliateName = "VIEW ON AMAZON"} = Astro.props;
         width: 15rem;
     }
 
+    /* Mobile */
 
+    @media screen and (max-width: 768px) {
 
+        .affiliate {
+            flex-direction: column;
+            gap: 3rem;
+            padding: 5%;
+            margin: 0%;
+            text-align: center;
+            align-items: center;
+
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .left {
+            align-items: center;
+        }
+
+        .Image {
+            width: 100%;
+        }
 </style>
