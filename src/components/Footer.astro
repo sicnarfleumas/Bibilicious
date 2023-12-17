@@ -36,7 +36,7 @@
         </div>
 
         <div class="info">
-            <h2>Fav Posts</h2>
+            <h2>Recent Posts</h2>
             <a href="">Points and Practice (Book Review)</a>
             <a href="">My Top 10 Japanese Learning Resources For Grammar, Kanji and JLPT (As a Self-Learner)</a>
         </div>
@@ -85,4 +85,30 @@
             padding: 2.5% 10% 5%;
         }
     }
+
+    /* mobile */
+
+    @media screen and (max-width: 768px) {
+        footer {
+            padding: 7.5% 5% 7.5%;
+        }
+
+        .top {
+            text-align: left;
+        }
+        .wrapper {
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .info {
+            width: 100%;
+            text-align: left;
+        }
+
+        h2 {
+            text-align: left;
+        }
+    }
+
 </style>

@@ -89,4 +89,30 @@ const posts = (await getCollection('blog')).sort(
         }
 
     }
+
+    /* Mobile */
+
+    @media screen and (max-width: 768px) {
+
+        .ReadMore {
+            padding: 0% 5%;
+        }
+
+        h2 {
+            text-align: left;
+        }
+
+        p {
+            line-height: 2;
+        }
+
+        .wrapper {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        a {
+            text-align: left;
+        }
+    }
 </style>
