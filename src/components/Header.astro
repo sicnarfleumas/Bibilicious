@@ -15,10 +15,10 @@ import Bmac from "./button/bmac.astro";
 
 			<ul>
 				<li>
-					<a href="/contact">Contact</a>
+					<a href="/contact" class="current-page">Contact</a>
 				</li>
 				<li>
-					<a href="/blog">Blog</a>
+					<a href="/blog" class="current-page">Blog</a>
 				</li>
 			</ul>
 
@@ -33,6 +33,9 @@ import Bmac from "./button/bmac.astro";
 
 	header {
 		padding: 2.5% 20%;
+		backdrop-filter: blur(2px);
+		position: sticky;
+		top: 0;
 	}
 
 	
@@ -41,35 +44,51 @@ import Bmac from "./button/bmac.astro";
 		justify-content: space-between;
 		align-items: center;
 		padding: 1rem 0;
+		
+
 
 		
 	}
 
 	nav ul {
+		
+
 		display: flex;
 		list-style: none;
 		gap: 3rem;
-
-		padding: 0.5625rem 1rem;
+		padding: 0.6rem .5rem;
 		justify-content: center;
 		align-items: center;
 		gap: 1.1875rem;
-		
+
 		border-radius: 3.125rem;
 		border: 1px solid #000;
 	}
 
-	li a {
+
+	nav li {
+		display: inline-block;``
+		margin-right: 20px;
+	}
+
+	nav ul li a {
 		font-size: .9rem;
-		transition: 0.5s ease;
+		transition: .85s ease;
+		padding: .25rem .5rem;
+		
+
+
 	}
 
-	li a:hover {
-		color: gray;
+	nav ul li a:hover, 
+	nav ul li a:active,
+	nav ul li a:focus,
+	nav ul li a.current {
 		text-decoration: none;
-
+		background-color: #abffb0;
+		border-radius: 2rem;
+		padding: .25rem .5rem;
 	}
-
 
 	/* responsive styles */
 

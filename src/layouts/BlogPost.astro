@@ -17,7 +17,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BlogHead title={title} description={description} />
-		<script src="../components/js/progressbar.js"></script>
+		<script src="../components/js/progressbar.jsx"></script>
 		<script
 			data-name="BMC-Widget" 
 			data-cfasync="false" 
@@ -107,7 +107,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
 
 
 	#progress-bar {
-		background-color: lightblue;
+		background: linear-gradient(to right, #FF3131, #FFA500);
 		position: absolute; /* Initial position */
 		width: 100%;
 		top: 0;

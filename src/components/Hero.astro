@@ -195,7 +195,8 @@ import bibi from "../assets/images/fas.png";
     }
 
     .box:hover {
-      scale: 1.02; 
+      scale: 1.02;
+      filter: drop-shadow(0px 0px 10px #333);
     }
     
     .bento:hover .box:not(:hover) {
@@ -203,11 +204,11 @@ import bibi from "../assets/images/fas.png";
         /* filter: sepia(50%); */
         /* filter: saturate(200%); */
         /* filter: invert(100%); */
-        /* filter: grayscale(100%); */
+        filter: grayscale(100%) blur(2.5px);
         /* filter: contrast(150%); */
         /* filter: brightness(0.5); */
-        filter: blur(2.5px);
         /* filter: opacity(0.5);    */
+
     }
     
     /* Tablet */
@@ -225,7 +226,10 @@ import bibi from "../assets/images/fas.png";
         .Hey, .About, .Blog, .Newsletter, .Lang, .Hobbies {
             grid-column: span 12;
         }
-
+        .bento:hover .box:not(:hover) {
+            filter: none;
+        }
+    }
     /* Mobile */
 
     @media screen and (max-width: 768px) {
