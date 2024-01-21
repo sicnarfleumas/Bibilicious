@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
 
-import bibi from "../assets/images/fas.png";
+import bibi from "../assets/images/fas.jpeg";
+import Footer from "./Footer.astro";
+import Coffee from "./Coffee.astro";
 ---
 
 <section class="bento">
@@ -55,9 +57,14 @@ import bibi from "../assets/images/fas.png";
         </div>
 </section>
 
+<Coffee/>
+<Footer/>
 <style>
     .Image {
         width: 5rem;
+        height: auto;
+        border-radius: 50%;
+        border: #333 solid 4px;
     }
 
     span {
