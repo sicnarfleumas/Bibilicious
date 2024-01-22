@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
+
 import Bmac from "./button/bmac.astro";
+
 ---
 
 <header>
@@ -10,15 +13,14 @@ import Bmac from "./button/bmac.astro";
 			Bibilicious
 		</a>
 
-		<ul>
-				<li>
-					<a href="/blog" class="current-page">Blog</a>
-				</li>
-
+			<ul>
 				<li>
 					<a href="/contact" class="current-page">Contact</a>
 				</li>
-		</ul>
+				<li>
+					<a href="/blog" class="current-page">Blog</a>
+				</li>
+			</ul>
 
 				<Bmac />
 	</nav>
@@ -42,6 +44,10 @@ import Bmac from "./button/bmac.astro";
 		justify-content: space-between;
 		align-items: center;
 		padding: 1rem 0;
+		
+
+
+		
 	}
 
 	nav ul {
@@ -49,7 +55,7 @@ import Bmac from "./button/bmac.astro";
 
 		display: flex;
 		list-style: none;
-		gap: 1rem;
+		gap: 3rem;
 		padding: 0.6rem .5rem;
 		justify-content: center;
 		align-items: center;
@@ -69,6 +75,9 @@ import Bmac from "./button/bmac.astro";
 		font-size: .9rem;
 		transition: .85s ease;
 		padding: .25rem .5rem;
+		
+
+
 	}
 
 	nav ul li a:hover, 
@@ -87,6 +96,9 @@ import Bmac from "./button/bmac.astro";
 		header {
 			padding: 2% 10%;
 		}
+
+		
+
 	}
 	
 	@media screen and (max-width: 768px) {
@@ -98,6 +110,10 @@ import Bmac from "./button/bmac.astro";
 			flex-direction: column;
 			gap: 1rem;
 		}
-	}
 
+		
+	}
+	
+
+	
 </style>
