@@ -2,6 +2,9 @@
 import { Image } from "astro:assets";
 
 import bibi from "../assets/images/fas.png";
+import Coffee from "./Coffee.astro";
+import Footer from "./Footer.astro";
+
 ---
 
 <section class="bento">
@@ -54,10 +57,13 @@ import bibi from "../assets/images/fas.png";
             <p>My hobbies include working out, reading, writing, watching anime/movies and vigorously learning as many Japanese songs as I can so that I can one day flawlessly sing them at karaoke. I also enjoy origami, playing the ukulele and skating to help relax my mind.</p>
         </div>
 </section>
-
+<Coffee/>
+<Footer/>
 <style>
     .Image {
-        width: 5rem;
+        width: 7rem;
+        border-radius: 50%;
+        border: #333 solid 5px;
     }
 
     span {
