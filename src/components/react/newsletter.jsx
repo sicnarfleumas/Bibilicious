@@ -14,7 +14,7 @@ const EmailForm = () => {
     try {
       // Insert the email into your Supabase table
       const { data, error } = await supabase
-        .from('your_table_name')
+        .from('Newsletter')
         .upsert([{ email }], { onConflict: ['email'] });
 
       if (error) {
