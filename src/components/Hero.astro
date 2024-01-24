@@ -32,8 +32,8 @@ import Footer from "./Footer.astro";
             <!-- Form with a email field and a submit button -->
             <form name="signup" method="POST" data-netlify="true">
                 <label for="email" class="visually-hidden">Email:</label>
-                <input id=".email" type="email" id="email" name="email" placeholder="Enter your email" required>
-                <button id=".button" type="submit">Subscribe</button>
+                <input class="email" type="email" id="email" name="email" placeholder="Enter your email" required>
+                <button class="button" type="submit">Subscribe</button>
             </form>
             
         </div>
@@ -65,7 +65,7 @@ import Footer from "./Footer.astro";
     .visually-hidden{
         display: none;
     }
-
+    
     .Image {
         width: 7rem;
         border-radius: 50%;
@@ -116,7 +116,7 @@ import Footer from "./Footer.astro";
         gap: .25rem;
     }
 
-    #email {
+    .email {
         border: 1px solid #ccc;
         border-radius: 0.25rem;
         padding: 0.5rem;
@@ -126,7 +126,7 @@ import Footer from "./Footer.astro";
         line-height: normal;
     }
 
-    #button {
+    .button {
         background-color: transparent;
         border: 1px solid #ccc;
         border-radius: 0.25rem;
@@ -135,6 +135,7 @@ import Footer from "./Footer.astro";
         font-style: normal;
         font-weight: 300;
         line-height: normal;
+
         text-align: left;
     }
 
