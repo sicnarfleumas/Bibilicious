@@ -1,5 +1,12 @@
 ---
+// Import everything necessary
+import { getCollection } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
 
+// Get all blog posts
+const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <footer>
@@ -37,8 +44,16 @@
 
         <div class="info">
             <h2>Recent Posts</h2>
-            <a href="">Points and Practice (Book Review)</a>
-            <a href="">My Top 10 Japanese Learning Resources For Grammar, Kanji and JLPT (As a Self-Learner)</a>
+            {
+                posts.slice(0, 2).map((post) => (
+                    
+                        <a href={`/blog/${post.slug}/`}>
+                            {post.data.title}
+                        </a>
+                    
+    
+                ))
+            }
         </div>
     </div>
 </footer>
