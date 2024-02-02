@@ -19,7 +19,7 @@ import Footer from "./Footer.astro";
                 />
             </div>
 
-            <p>I'm Bibi, a language enthusiast and aspiring translator currently learning Japanese. I share learning resources and experiences that I have gathered over the past 2 years of studying the language. I also write about various topics I find interesting and provide translations for my own content. I hope to connect and grow with people who have similar interests and goals.</p>
+            <h1 class="p">I'm Bibi, a language enthusiast and aspiring translator currently learning Japanese.</h1> <p>I share learning resources and experiences that I have gathered over the past 2 years of studying the language. I also write about various topics I find interesting and provide translations for my own content. I hope to connect and grow with people who have similar interests and goals.</p>
         </div>
         <div class="Blog box">
             <h2>I love writing</h2>
@@ -88,11 +88,13 @@ import Footer from "./Footer.astro";
         line-height: normal;
     }
 
-    p {
+
+    p, .p {
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;
         line-height: 2;
+        text-transform: none;
     }
 
     a {

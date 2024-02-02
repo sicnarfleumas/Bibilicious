@@ -42,6 +42,7 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 
 			<section>
+				<h1>🌸Read the Latest:</h1>
 				<ul>
 					{
 						posts.map((post) => (
@@ -69,6 +70,9 @@ const posts = (await getCollection('blog')).sort(
 
 
 <style>
+	h1 {
+		padding-bottom: 2rem;
+	}
 	section {
 		padding: 2.5% 20%;
 	}
