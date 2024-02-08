@@ -17,6 +17,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 ---
 <ViewTransitions />
+<link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
