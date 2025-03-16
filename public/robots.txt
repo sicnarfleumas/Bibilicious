@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow:
 
-Sitemap: https://<YOUR SITE>/sitemap-index.xml
+Sitemap: https://bibilicious.blog/sitemap-index.xml

@@ -1,8 +1,16 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import fs from 'node:fs';
+import path from 'node:path';
 
-import '../../styles/blog.css';
+// Import CSS as strings to be able to inline critical CSS
+// and defer non-critical CSS
+const criticalCSS = fs.readFileSync(
+  path.resolve('src/styles/critical.css'),
+  'utf-8'
+);
 
+// Import fonts
 import '@fontsource/berkshire-swash';
 import '@fontsource-variable/inter';
 
@@ -40,20 +48,29 @@ const alternates = Object.entries(alternateUrls)
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
+<!-- Inline critical CSS -->
+<style set:html={criticalCSS}></style>
 
+<!-- Preload CSS script -->
+<script is:inline src="/js/preloadCSS.js"></script>
+
+<!-- Defer non-critical CSS -->
+<link rel="preload" href="/_astro/index.Dif9_gxa.css" as="style" data-preload>
+<noscript><link rel="stylesheet" href="/_astro/index.Dif9_gxa.css"></noscript>
+
+<!-- Font preloads -->
 <!-- Preconnect to fonts.gstatic.com for faster font loading -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <!-- Preload the Berkshire Swash font to ensure faster font loading -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" data-preload>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter&display=swap" data-preload>
 
-
-<!-- Stylesheet link for the Berkshire Swash font -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap" />
-
+<!-- Fallback for browsers without JS -->
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
+</noscript>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

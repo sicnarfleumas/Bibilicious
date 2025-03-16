@@ -1,0 +1,6 @@
+# Security Policy for Bibilicious
+Contact: mailto:bibilicious@gmail.com
+Expires: 2025-03-16T00:00:00.000Z
+Preferred-Languages: en, ja, ta
+Canonical: https://bibilicious.blog/.well-known/security.txt
+Policy: https://bibilicious.blog/security-policy 

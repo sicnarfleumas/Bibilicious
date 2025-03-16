@@ -1,4 +1,5 @@
 ---
+import { ClientRouter, slide } from 'astro:transitions';
 
 interface Props {
 	currentLanguage?: 'en' | 'ja' | 'ta';
@@ -40,9 +41,11 @@ const isBlogPage = pathWithoutLang.startsWith('/blog');
 const isContactPage = pathWithoutLang.startsWith('/contact');
 ---
 
+<ClientRouter />
+
 <header>
 	<div class="header-container">
-		<a href={currentLanguage === 'en' ? '/' : `/${currentLanguage}/`} class="logo">
+		<a href={currentLanguage === 'en' ? '/' : `/${currentLanguage}/`} class="logo" transition:animate={slide({ duration: 300 })}>
 			Bibilicious
 		</a>
 
@@ -51,6 +54,7 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 				<a 
 					href={currentLanguage === 'en' ? '/blog' : `/${currentLanguage}/blog`} 
 					class={isBlogPage ? 'active' : ''}
+					transition:animate={slide({ duration: 300 })}
 				>
 					Blog
 				</a>
@@ -58,6 +62,7 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 				<a 
 					href={currentLanguage === 'en' ? '/contact' : `/${currentLanguage}/contact`} 
 					class={isContactPage ? 'active' : ''}
+					transition:animate={slide({ duration: 300 })}
 				>
 					Contact
 				</a>
@@ -78,6 +83,7 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 								class={`lang-option ${currentLanguage === code ? 'active' : ''}`}
 								hreflang={code}
 								lang={code}
+								transition:animate={slide({ duration: 200 })}
 							>
 								{name}
 							</a>
@@ -107,33 +113,66 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 
 <script>
 	// Mobile menu toggle functionality
-	document.addEventListener('DOMContentLoaded', () => {
+	const setupNavigation = (): (() => void) => {
 		const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 		const nav = document.querySelector('nav');
 		const languageDropdown = document.querySelector('.language-current');
 		const languageOptions = document.querySelector('.language-options');
 		
 		// Toggle mobile menu
-		mobileMenuToggle?.addEventListener('click', () => {
+		const toggleMobileMenu = (): void => {
 			nav?.classList.toggle('open');
-			mobileMenuToggle.classList.toggle('open');
-		});
+			mobileMenuToggle?.classList.toggle('open');
+		};
 		
 		// Toggle language dropdown
-		languageDropdown?.addEventListener('click', (e) => {
+		const toggleLanguageDropdown = (e: Event): void => {
 			e.stopPropagation();
 			languageOptions?.classList.toggle('show');
-		});
+		};
 		
 		// Close dropdown when clicking outside
-		document.addEventListener('click', () => {
+		const closeLanguageDropdown = (): void => {
 			languageOptions?.classList.remove('show');
-		});
+		};
 		
 		// Prevent closing when clicking inside dropdown
-		languageOptions?.addEventListener('click', (e) => {
+		const preventDropdownClose = (e: Event): void => {
 			e.stopPropagation();
-		});
+		};
+		
+		// Add event listeners
+		mobileMenuToggle?.addEventListener('click', toggleMobileMenu);
+		languageDropdown?.addEventListener('click', toggleLanguageDropdown);
+		document.addEventListener('click', closeLanguageDropdown);
+		languageOptions?.addEventListener('click', preventDropdownClose);
+		
+		// Return cleanup function
+		return () => {
+			mobileMenuToggle?.removeEventListener('click', toggleMobileMenu);
+			languageDropdown?.removeEventListener('click', toggleLanguageDropdown);
+			document.removeEventListener('click', closeLanguageDropdown);
+			languageOptions?.removeEventListener('click', preventDropdownClose);
+		};
+	};
+
+	// Initialize on load
+	let cleanup: (() => void) | undefined;
+	
+	// Initial setup
+	document.addEventListener('DOMContentLoaded', () => {
+		cleanup = setupNavigation();
+	});
+	
+	// Support for Astro's view transitions - runs after every page navigation
+	document.addEventListener('astro:page-load', () => {
+		if (cleanup) cleanup();
+		cleanup = setupNavigation();
+	});
+	
+	// Clean up event listeners before navigating to a new page
+	document.addEventListener('astro:before-swap', () => {
+		if (cleanup) cleanup();
 	});
 </script>
 
