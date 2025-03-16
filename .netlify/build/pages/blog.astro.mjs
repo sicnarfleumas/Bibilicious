@@ -1,13 +1,13 @@
-import { c as createAstro, a as createComponent, r as renderTemplate, b as renderComponent, d as addAttribute, e as renderTransition, f as renderHead } from '../chunks/astro/server_BMjflfJL.mjs';
+import { c as createAstro, a as createComponent, r as renderTemplate, b as renderComponent, d as addAttribute, e as renderTransition, f as renderHead } from '../chunks/astro/server_BzOCFd5f.mjs';
 import 'kleur/colors';
-import { $ as $$BlogHead } from '../chunks/BlogHead_DlaJLTY8.mjs';
-import { $ as $$Header } from '../chunks/Header_D8sHfoYi.mjs';
-import { $ as $$Footer, a as $$SchemaOrg, b as $$ClientRouter } from '../chunks/SchemaOrg_CCClHFcA.mjs';
-import { $ as $$Coffee } from '../chunks/Coffee_ChgzgeM0.mjs';
-import { $ as $$ReadMore, a as $$FormattedDate } from '../chunks/ReadMore_BjPGQEgd.mjs';
-import { g as getCollection } from '../chunks/_astro_content_DbGO9th7.mjs';
+import { $ as $$BlogHead } from '../chunks/BlogHead_Dok5iyfG.mjs';
+import { $ as $$Header } from '../chunks/Header_BXp_-R6S.mjs';
+import { $ as $$Footer, a as $$SchemaOrg, b as $$ClientRouter } from '../chunks/SchemaOrg_U0qbgqWj.mjs';
+import { $ as $$Coffee } from '../chunks/Coffee_Ba9FFsxg.mjs';
+import { $ as $$ReadMore, a as $$FormattedDate } from '../chunks/ReadMore_nI5hYFMt.mjs';
+import { g as getCollection } from '../chunks/_astro_content_B7Omzbbc.mjs';
 /* empty css                                 */
-/* empty css                                  */
+/* empty css                                 */
 export { renderers } from '../renderers.mjs';
 
 var __freeze = Object.freeze;

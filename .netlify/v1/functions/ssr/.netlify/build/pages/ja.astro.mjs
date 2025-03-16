@@ -1,10 +1,10 @@
-import { c as createAstro, a as createComponent, d as addAttribute, b as renderComponent, f as renderHead, e as renderTransition, g as createTransitionScope, r as renderTemplate } from '../chunks/astro/server_BMjflfJL.mjs';
+import { c as createAstro, a as createComponent, d as addAttribute, b as renderComponent, f as renderHead, e as renderTransition, g as createTransitionScope, r as renderTemplate } from '../chunks/astro/server_BzOCFd5f.mjs';
 import 'kleur/colors';
-import { $ as $$BlogHead } from '../chunks/BlogHead_DlaJLTY8.mjs';
-import { d as dissolve, $ as $$JapaneseTheme, H as Header, s as sakuraFade } from '../chunks/JapaneseTransitions_CNwOdyhn.mjs';
-import { $ as $$Hero } from '../chunks/Hero_B_pVQt6U.mjs';
-import { b as $$ClientRouter, a as $$SchemaOrg, $ as $$Footer } from '../chunks/SchemaOrg_CCClHFcA.mjs';
-/* empty css                                  */
+import { $ as $$BlogHead } from '../chunks/BlogHead_Dok5iyfG.mjs';
+import { d as dissolve, $ as $$JapaneseTheme, H as Header, s as sakuraFade } from '../chunks/JapaneseTransitions_Ch4LKKIF.mjs';
+import { $ as $$Hero } from '../chunks/Hero_CQQceXcu.mjs';
+import { b as $$ClientRouter, a as $$SchemaOrg, $ as $$Footer } from '../chunks/SchemaOrg_U0qbgqWj.mjs';
+/* empty css                                 */
 export { renderers } from '../renderers.mjs';
 
 const $$Astro = createAstro("https://bibilicious.blog");

@@ -13,84 +13,153 @@ const {AffiliateAlt = "Book Recommendation"} = Astro.props;
     <div class="left">
         <h2>CHECK IT OUT HERE!</h2>
         <p>The following are affiliate links and I would appreciate it if you guys use them as it helps me run this website without having to rely on ads 🙂</p>
-        <a href={AffiliateLink}>{AffiliateName}</a>
+        <a href={AffiliateLink} class="affiliate-button">{AffiliateName}</a>
     </div>
 
-    <Image 
-        src={AffiliateImg}
-        alt={AffiliateAlt}
-        class="Image"
-        />
-
+    <div class="image-container">
+        <Image 
+            src={AffiliateImg}
+            alt={AffiliateAlt}
+            class="affiliate-image"
+            width={240}
+            height={360}
+            />
+    </div>
 </section>
 
 
 <style>
     .affiliate {
         display: flex;
-        margin: 5% 0%;
-        padding: 5%;
-        border-radius: 3.125rem;
+        margin: 3rem 0;
+        padding: 2.5rem;
+        border-radius: 2rem;
         background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .left {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
+        flex: 1;
     }
 
-    a {
-        display: flex;
-        width: 14.76638rem;
-        padding: 0.875rem 2.6875rem;
+    h2 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    p {
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .affiliate-button {
+        display: inline-flex;
+        padding: 0.875rem 2rem;
         justify-content: center;
         align-items: center;
-        gap: 0.625rem;
         border-radius: 1.5625rem;
         background: #AFEEEE;
-
         color: #000;
-        font-size: 1rem;
-        font-style: normal;
-        text-transform: uppercase;
+        font-size: 0.9rem;
         font-weight: 700;
-        line-height: normal;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        width: fit-content;
+        box-shadow: 0 2px 8px rgba(175, 238, 238, 0.3);
     }
 
-    .Image {
-        border-radius: 3.125rem;
+    .affiliate-button:hover {
+        background: #8ee6e6;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(175, 238, 238, 0.4);
+    }
+
+    .image-container {
+        flex-shrink: 0;
+    }
+
+    .affiliate-image {
+        border-radius: 1.5rem;
         border: 10px solid #FFC0CB;
         width: 15rem;
+        height: auto;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Tablet */
+    @media screen and (max-width: 1024px) {
+        .affiliate {
+            padding: 2rem;
+        }
+        
+        .affiliate-image {
+            width: 12rem;
+        }
     }
 
     /* Mobile */
-
     @media screen and (max-width: 768px) {
-
         .affiliate {
             flex-direction: column;
-            gap: 3rem;
-            padding: 5%;
-            margin: 0%;
+            gap: 2rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
             text-align: center;
-            align-items: center;
-
         }
 
         h2 {
             text-align: center;
+            font-size: 1.3rem;
         }
 
         p {
-            text-align: justify;
+            text-align: center;
+            font-size: 0.95rem;
         }
 
         .left {
             align-items: center;
+            gap: 1rem;
         }
 
-        .Image {
+        .affiliate-button {
             width: 100%;
+            max-width: 250px;
         }
+
+        .image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .affiliate-image {
+            width: 80%;
+            max-width: 15rem;
+        }
+    }
+
+    /* Small Mobile */
+    @media screen and (max-width: 480px) {
+        .affiliate {
+            padding: 1.25rem;
+            border-radius: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.2rem;
+        }
+        
+        .affiliate-button {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.85rem;
+        }
+    }
 </style>
