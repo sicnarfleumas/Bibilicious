@@ -1,0 +1,65 @@
+---
+
+import GoogleForm from '../GoogleForm/GoogleForm';
+---
+<section class="contact-section">
+  <div class="contact-container">
+    <div class="contact-text">
+      <h1>Get in Touch</h1>
+      <p>
+        I'm pumped that you're thinking about diving into the awesome world of translations! 
+        Whether you've got a quirky document, a cool article, or just something super random 
+        that needs translating between Japanese, Tamil, and English, I'm here to make it happen.
+      </p>
+    </div>
+    
+    <div class="contact-form">
+      <GoogleForm client:load />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: 2rem 1rem;
+    width: 100%;
+  }
+  
+  .contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .contact-text {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .contact-form {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-container {
+      flex-direction: column;
+    }
+    
+    .contact-text, .contact-form {
+      width: 100%;
+    }
+  }
+</style> 

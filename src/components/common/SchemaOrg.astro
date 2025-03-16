@@ -1,0 +1,134 @@
+---
+interface Props {
+  type: 'website' | 'blog' | 'blogPosting' | 'person' | 'organization';
+  title: string;
+  description: string;
+  image?: string;
+  datePublished?: Date;
+  dateModified?: Date;
+  author?: string;
+  language?: 'en' | 'ja' | 'ta';
+  url?: URL;
+  breadcrumbs?: Array<{name: string, item: string}>;
+}
+
+const {
+  type,
+  title,
+  description,
+  image = '/blog-placeholder-1.jpg',
+  datePublished,
+  dateModified,
+  author = 'Shruthi Lakshmi',
+  language = 'en',
+  url = Astro.url,
+  breadcrumbs = []
+} = Astro.props;
+
+// Base organization schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bibilicious",
+  "url": "https://bibilicious.blog",
+  "logo": new URL('/favicon.svg', Astro.site).toString(),
+  "sameAs": [
+    "https://twitter.com/bibilicious",
+    "https://instagram.com/bibilicious"
+  ]
+};
+
+// Base person schema for the author
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": author,
+  "url": "https://bibilicious.blog/about"
+};
+
+// Website schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": title,
+  "description": description,
+  "url": url.toString(),
+  "inLanguage": language === 'en' ? 'en-US' : language === 'ja' ? 'ja-JP' : 'ta-IN',
+  "publisher": organizationSchema
+};
+
+// Blog schema
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": title,
+  "description": description,
+  "url": url.toString(),
+  "inLanguage": language === 'en' ? 'en-US' : language === 'ja' ? 'ja-JP' : 'ta-IN',
+  "publisher": organizationSchema,
+  "author": personSchema
+};
+
+// BlogPosting schema
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "image": new URL(image, Astro.site).toString(),
+  "datePublished": datePublished?.toISOString(),
+  "dateModified": dateModified?.toISOString() || datePublished?.toISOString(),
+  "author": personSchema,
+  "publisher": organizationSchema,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": url.toString()
+  },
+  "inLanguage": language === 'en' ? 'en-US' : language === 'ja' ? 'ja-JP' : 'ta-IN'
+};
+
+// Breadcrumb schema
+const breadcrumbSchema = breadcrumbs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": new URL(item.item, Astro.site).toString()
+  }))
+} : null;
+
+// Determine which schema to use based on type
+let schema;
+switch (type) {
+  case 'website':
+    schema = websiteSchema;
+    break;
+  case 'blog':
+    schema = blogSchema;
+    break;
+  case 'blogPosting':
+    schema = blogPostingSchema;
+    break;
+  case 'person':
+    schema = personSchema;
+    break;
+  case 'organization':
+    schema = organizationSchema;
+    break;
+  default:
+    schema = websiteSchema;
+}
+
+// Create an array of schemas to include
+const schemas = [schema];
+if (breadcrumbSchema) {
+  // Use type assertion to avoid TypeScript error
+  schemas.push(breadcrumbSchema as any);
+}
+---
+
+{schemas.map(schema => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))} 

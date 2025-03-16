@@ -1,0 +1,148 @@
+---
+import { GoogleNewsletterForm } from '../GoogleForm';
+
+interface Props {
+    language?: 'en' | 'ja' | 'ta';
+}
+
+const { language = 'en' } = Astro.props;
+
+// Translations for the Newsletter component
+const translations = {
+    en: {
+        title: "STAY IN THE LOOP",
+        description: "Enjoy reading my blogs? Leave your email behind and I will ping you every time I post some new content.",
+        nameLabel: "Your Name",
+        emailLabel: "Your Email",
+        submitButton: "Subscribe"
+    },
+    ja: {
+        title: "最新情報をお届け",
+        description: "ブログを楽しんでいますか？メールアドレスを残していただければ、新しいコンテンツを投稿するたびにお知らせします。",
+        nameLabel: "お名前",
+        emailLabel: "メールアドレス",
+        submitButton: "登録する"
+    },
+    ta: {
+        title: "தொடர்பில் இருங்கள்",
+        description: "எனது வலைப்பதிவுகளைப் படிப்பதை ரசிக்கிறீர்களா? உங்கள் மின்னஞ்சலை விட்டுச் செல்லுங்கள், நான் புதிய உள்ளடக்கத்தை இடுகையிடும் ஒவ்வொரு முறையும் உங்களுக்குத் தெரிவிப்பேன்.",
+        nameLabel: "உங்கள் பெயர்",
+        emailLabel: "உங்கள் மின்னஞ்சல்",
+        submitButton: "பதிவு செய்க"
+    }
+};
+
+const t = translations[language];
+---
+
+<section class="newsletter box">
+    <h2>{t.title}</h2>
+    <p>{t.description}</p>
+    <div class="newsletter-form">
+        <GoogleNewsletterForm 
+            client:load 
+            language={language} 
+            translations={{
+                nameLabel: t.nameLabel,
+                emailLabel: t.emailLabel,
+                submitButton: t.submitButton
+            }} 
+        />
+    </div>
+</section>
+
+<style>
+    .newsletter {
+        background-color: #F0E6EF; /* Lavender/wisteria color */
+        border-radius: 1rem;
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .newsletter::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+        opacity: 0.6;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .newsletter > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .newsletter:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+        color: #333;
+        position: relative;
+        display: inline-block;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #4D4D4D;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin: 0;
+        color: #4D4D4D;
+    }
+
+    .newsletter-form {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .newsletter {
+            padding: 2rem;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .newsletter {
+            padding: 1.75rem;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .newsletter {
+            padding: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.3rem;
+        }
+        
+        p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    }
+</style>

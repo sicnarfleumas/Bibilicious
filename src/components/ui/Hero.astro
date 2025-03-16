@@ -1,0 +1,443 @@
+---
+import { Image } from "astro:assets";
+import Newsletter from "../blog/Newsletter.astro";
+
+import bibi from "../../assets/images/fas.png";
+import Coffee from "./Coffee.astro";
+
+interface Props {
+    language?: 'en' | 'ja' | 'ta';
+}
+
+const { language = 'en' } = Astro.props;
+
+// Translations for the Hero component
+const translations = {
+    en: {
+        welcome: "Hey there! Welcome to my personal blog",
+        intro: "I'm Bibi, a language enthusiast and aspiring translator currently learning Japanese.",
+        description: "I share learning resources and experiences that I have gathered over the past 2 years of studying the language. I also write about various topics I find interesting and provide translations for my own content. I hope to connect and grow with people who have similar interests and goals.",
+        writing: "I love writing",
+        writingText: "Writing has always been my way of expressing myself ever since I was a child. When I couldn't find the words to say, I would often turn to writing. It gives me a unique sense of identity that I have struggled to find in other areas. This blog is an extension of that identity, and I hope to nurture it alongside people who share my interests and love for the Japanese language.",
+        blogPosts: "Blog Posts",
+        about: "About The Site",
+        aboutText: "I do not run ads on this website. The website runs on affiliate links to products that I personally use. You can also sponsor me on Buy Me A Coffee.",
+        coffee: "Coffee",
+        languages: "Languages",
+        hobbies: "Hobbies",
+        hobbiesText: "My hobbies include working out, reading, writing, watching anime/movies and vigorously learning as many Japanese songs as I can so that I can one day flawlessly sing them at karaoke. I also enjoy origami, playing the ukulele and skating to help relax my mind."
+    },
+    ja: {
+        welcome: "こんにちは！私の個人ブログへようこそ",
+        intro: "私はビビ、言語愛好家で、現在日本語を学んでいる翻訳者志望です。",
+        description: "過去2年間の日本語学習で集めた学習リソースや経験を共有しています。また、興味深いトピックについて書いたり、自分のコンテンツの翻訳を提供したりしています。同じような興味や目標を持つ人々とつながり、成長していきたいと思っています。",
+        writing: "書くことが大好き",
+        writingText: "書くことは子供の頃から自分を表現する方法でした。言葉で表現できないとき、よく文章に頼っていました。それは他の分野では見つけるのに苦労してきた独自のアイデンティティを与えてくれます。このブログはそのアイデンティティの延長であり、私の興味や日本語への愛を共有する人々と一緒に育てていきたいと思っています。",
+        blogPosts: "ブログ記事",
+        about: "サイトについて",
+        aboutText: "このウェブサイトでは広告を掲載していません。私が個人的に使用している製品のアフィリエイトリンクで運営しています。Buy Me A Coffeeでスポンサーになることもできます。",
+        coffee: "コーヒー",
+        languages: "言語",
+        hobbies: "趣味",
+        hobbiesText: "私の趣味には、運動、読書、執筆、アニメや映画鑑賞、そしていつか完璧にカラオケで歌えるように熱心に日本の歌を学ぶことが含まれます。また、心をリラックスさせるために折り紙、ウクレレ演奏、スケートも楽しんでいます。"
+    },
+    ta: {
+        welcome: "வணக்கம்! எனது தனிப்பட்ட வலைப்பதிவிற்கு வரவேற்கிறேன்",
+        intro: "நான் பிபி, மொழி ஆர்வலர் மற்றும் தற்போது ஜப்பானிய மொழியைக் கற்றுக்கொண்டிருக்கும் மொழிபெயர்ப்பாளர்.",
+        description: "மொழியைக் கற்பதில் கடந்த 2 ஆண்டுகளாக சேகரித்த கற்றல் வளங்கள் மற்றும் அனுபவங்களைப் பகிர்கிறேன். நான் சுவாரஸ்யமான தலைப்புகளைப் பற்றியும் எழுதுகிறேன், மேலும் எனது சொந்த உள்ளடக்கத்திற்கான மொழிபெயர்ப்புகளை வழங்குகிறேன். ஒத்த ஆர்வங்கள் மற்றும் இலக்குகளைக் கொண்ட மக்களுடன் இணைந்து வளர விரும்புகிறேன்.",
+        writing: "எழுதுவது எனக்கு பிடிக்கும்",
+        writingText: "நான் சிறுவயது முதலே எழுதுவது என்னை வெளிப்படுத்தும் வழியாக இருந்து வருகிறது. சொற்களைச் சொல்ல முடியாதபோது, நான் பெரும்பாலும் எழுதுவதற்குத் திரும்புவேன். இது எனக்கு ஒரு தனித்துவமான அடையாளத்தை அளிக்கிறது, இதை மற்ற துறைகளில் கண்டுபிடிக்க நான் போராடியுள்ளேன். இந்த வலைப்பதிவு அந்த அடையாளத்தின் நீட்டிப்பாகும், மேலும் எனது ஆர்வங்களையும் ஜப்பானிய மொழி மீதான அன்பையும் பகிர்ந்து கொள்ளும் மக்களுடன் இதை வளர்க்க விரும்புகிறேன்.",
+        blogPosts: "வலைப்பதிவுகள்",
+        about: "இந்த தளத்தைப் பற்றி",
+        aboutText: "இந்த வலைத்தளத்தில் விளம்பரங்களை இயக்கவில்லை. இந்த வலைத்தளம் நான் தனிப்பட்ட முறையில் பயன்படுத்தும் தயாரிப்புகளுக்கான இணைப்பு இணைப்புகளில் இயங்குகிறது. Buy Me A Coffee இல் என்னை ஆதரிக்கலாம்.",
+        coffee: "காபி",
+        languages: "மொழிகள்",
+        hobbies: "பொழுதுபோக்குகள்",
+        hobbiesText: "எனது பொழுதுபோக்குகளில் உடற்பயிற்சி, படிப்பு, எழுதுதல், அனிமே/திரைப்படங்களைப் பார்ப்பது மற்றும் ஒரு நாள் கராயோகேயில் குறையில்லாமல் பாடுவதற்காக முடிந்தவரை பல ஜப்பானிய பாடல்களைக் கற்றுக்கொள்வது ஆகியவை அடங்கும். மேலும் எனது மனதை அமைதிப்படுத்த ஒரிகாமி, உகுலேலே வாசிப்பது மற்றும் ஸ்கேட்டிங் செய்வதையும் நான் ரசிக்கிறேன்."
+    }
+};
+
+const t = translations[language];
+
+// Language names in their native language
+const languageNames = {
+    en: "English",
+    ja: "日本語",
+    ta: "தமிழ்"
+};
+
+// Blog link based on language
+const blogLink = language === 'en' ? '/blog' : `/${language}/blog`;
+const coffeeLink = "https://www.buymeacoffee.com/bibilicious";
+---
+
+<section class="bento">
+        <div class="Hey box">
+            <h2>{t.welcome}</h2>
+            
+            <div class="ImgWrapper">
+            <Image
+                src={bibi}
+                alt="Bibi"
+                class="Image"
+                />
+            </div>
+
+            <h1 class="p">{t.intro}</h1> <p>{t.description}</p>
+        </div>
+        <div class="Blog box">
+            <h2>{t.writing}</h2>
+            <p>{t.writingText}</p>
+            <a href={blogLink} class="link-button">{t.blogPosts} <span>↗</span></a>
+        </div>
+        
+        <Newsletter language={language} />
+
+        <div class="About box">
+            <h2>{t.about}</h2>
+            <p>{t.aboutText}</p>
+            <a href={coffeeLink} target="_blank" class="link-button">{t.coffee} <span>↗</span></a>
+        </div>
+
+        <div class="Lang box">
+            <h2>{t.languages}</h2>
+            <ul>
+                <li>{languageNames.ja}</li>
+                <li>{languageNames.ta}</li>
+                <li>{languageNames.en}</li>
+            </ul>
+        </div>
+
+        <div class="Hobbies box">
+            <h2>{t.hobbies}</h2>
+            <p>{t.hobbiesText}</p>
+        </div>
+</section>
+<Coffee language={language} />
+
+<style>
+    /* Japanese-inspired patterns */
+    @keyframes gentle-wave {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .visually-hidden{
+        display: none;
+    }
+    
+    .Image {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        border: 3px solid #4D4D4D;
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .ImgWrapper {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0;
+    }
+
+    .ImgWrapper:hover .Image {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .link-button {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: #4D4D4D;
+        font-weight: 500;
+        transition: transform 0.2s ease, color 0.2s ease;
+        margin-top: auto;
+        padding: 0.5rem 0;
+    }
+
+    .link-button:hover {
+        transform: translateX(5px);
+        color: #000;
+    }
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        border: 1.5px solid #4D4D4D;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: 0.5rem;
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .link-button:hover span {
+        background-color: #4D4D4D;
+        color: white;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: #333;
+        position: relative;
+        display: inline-block;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #4D4D4D;
+    }
+
+    p, .p {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.8;
+        color: #4D4D4D;
+    }
+
+    a {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: #4D4D4D;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 2;
+    }
+
+    li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: #4D4D4D;
+    }
+
+    .bento {
+        padding: 3% 0 5%;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: auto;
+        grid-auto-flow: dense;
+        grid-gap: 1.5rem;
+        max-width: 1200px;
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: 20px 20px;
+        opacity: 0.05;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .box > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Japanese-inspired pastel colors */
+    .Hey {
+        background-color: #F7D8BA; /* Sakura pink/peach */
+        grid-column: span 7;
+        background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 90%);
+    }
+
+    .Blog {
+        background-color: #D4EEFF; /* Sky blue */
+        grid-column: span 5;
+        background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+        background-size: 20px 20px;
+    }
+
+    :global(.newsletter) {
+        grid-column: span 6;
+    }
+
+    .About {
+        background-color: #E8F3D6; /* Matcha green */
+        grid-column: span 6;
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+        background-size: 20px 20px;
+    }
+
+    .Lang {
+        background-color: #FFDDE1; /* Plum blossom pink */
+        grid-column: span 3;
+        background-image: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+    }
+
+    .Hobbies {
+        background-color: #D1E8E4; /* Jade green */
+        grid-column: span 9;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px), 
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+
+    /* Improved Hover Animations */
+    .box {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                    box-shadow 0.4s ease,
+                    filter 0.4s ease;
+    }
+
+    .box:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+    }
+    
+    .bento:hover .box:not(:hover) {
+        filter: brightness(0.95);
+        transform: scale(0.98);
+    }
+
+    /* Better Responsive Design */
+    @media screen and (max-width: 1200px) {
+        .bento {
+            width: 90%;
+            grid-gap: 1.25rem;
+        }
+        
+        .box {
+            padding: 2rem;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .bento {
+            grid-template-columns: repeat(12, 1fr);
+            width: 90%;
+        }
+
+        .Hey {
+            grid-column: span 12;
+        }
+        
+        .Blog, .About {
+            grid-column: span 6;
+        }
+        
+        .Lang, .Hobbies {
+            grid-column: span 12;
+        }
+        
+        :global(.newsletter) {
+            grid-column: span 12;
+        }
+        
+        .bento:hover .box:not(:hover) {
+            filter: none;
+            transform: none;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .bento {
+            width: 95%;
+            grid-gap: 1rem;
+        }
+        
+        .Blog, .About, .Lang, .Hobbies, :global(.newsletter) {
+            grid-column: span 12;
+        }
+        
+        .box {
+            padding: 1.75rem;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        .bento {
+            width: 100%;
+            padding: 3% 5%;
+            grid-gap: 0.75rem;
+        }
+        
+        .box {
+            padding: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.3rem;
+        }
+        
+        p, .p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    }
+</style>
+
+<script>
+    // Add subtle animation to boxes on scroll with staggered delays
+    document.addEventListener('DOMContentLoaded', () => {
+        const boxes = document.querySelectorAll('.box');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target as HTMLElement;
+                    // Get the index of the element to create staggered animation
+                    const index = Array.from(boxes).indexOf(entry.target);
+                    const delay = index * 100; // 100ms delay between each element
+                    
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, delay);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        boxes.forEach(box => {
+            const element = box as HTMLElement;
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(box);
+        });
+    });
+</script>

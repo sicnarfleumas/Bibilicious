@@ -1,32 +1,89 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 
-import BlogHead from '../components/BlogHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Coffee from '../components/Coffee.astro';
-import Newsletter from '../components/Newsletter.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import ReadMore from '../components/ReadMore.astro';
+import BlogHead from '../components/blog/BlogHead.astro';
+import Header from '../components/layout/Header.jsx';
+import Footer from '../components/layout/Footer.astro';
+import Coffee from '../components/ui/Coffee.jsx';
+import FormattedDate from '../components/blog/FormattedDate.astro';
+import Newsletter from '../components/blog/Newsletter.astro';
+import ReadMore from '../components/blog/ReadMore.astro';
+import SchemaOrg from '../components/common/SchemaOrg.astro';
+import { ClientRouter } from 'astro:transitions';
+import JapaneseTheme from '../components/theme/JapaneseTheme.astro';
+import { wipeRight, dissolve, sakuraFade, inkDrop, paperSlide } from '../components/theme/JapaneseTransitions';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, heroImage } = Astro.props;
+const { title, description, pubDate, heroImage, language = 'en' } = Astro.props;
+
+// Translations for UI elements
+const translations = {
+	en: {
+		publishedOn: 'Published on',
+		backToBlog: 'Back to Blog',
+		home: 'Home',
+		blog: 'Blog'
+	},
+	ja: {
+		publishedOn: '公開日',
+		backToBlog: 'ブログに戻る',
+		home: 'ホーム',
+		blog: 'ブログ'
+	},
+	ta: {
+		publishedOn: 'வெளியிடப்பட்ட தேதி',
+		backToBlog: 'வலைப்பதிவுக்குத் திரும்பு',
+		home: 'முகப்பு',
+		blog: 'வலைப்பதிவு'
+	}
+} as const;
+
+// Ensure language is a valid key for translations
+const validLanguage = (language as string) in translations ? (language as 'en' | 'ja' | 'ta') : 'en';
+
+const t = translations[validLanguage];
+
+// Generate breadcrumbs for the blog post
+const breadcrumbs = [
+	{
+		"@type": "ListItem",
+		"position": 1,
+		"name": validLanguage === 'en' ? 'Home' : validLanguage === 'ja' ? 'ホーム' : 'முகப்பு',
+		"item": validLanguage === 'en' ? 'https://bibilicious.com' : `https://bibilicious.com/${validLanguage}`
+	},
+	{
+		"@type": "ListItem",
+		"position": 2,
+		"name": validLanguage === 'en' ? 'Blog' : validLanguage === 'ja' ? 'ブログ' : 'வலைப்பதிவு',
+		"item": validLanguage === 'en' ? 'https://bibilicious.com/blog' : `https://bibilicious.com/${validLanguage}/blog`
+	},
+	{
+		"@type": "ListItem",
+		"position": 3,
+		"name": title,
+		"item": Astro.url.toString()
+	}
+];
+
+// Generate the correct blog URL based on language
+const blogUrl = validLanguage === 'en' ? '/blog' : `/${validLanguage}/blog`;
+const homeUrl = validLanguage === 'en' ? '/' : `/${validLanguage}`;
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang={validLanguage} transition:animate={dissolve({ duration: '0.7s' })} class="jp-theme jp-texture">
 	<head>
-		<!-- Google Tag Manager -->
-			<script type="text/partytown">
-				(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-				})(window,document,'script','dataLayer','GTM-MMXWL72L');
-			</script>
-		<!-- End Google Tag Manager -->
-		<BlogHead title={title} description={description} />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<BlogHead title={title} description={description} language={validLanguage} />
+		<ClientRouter />
+		<JapaneseTheme />
 		<script src="../components/js/progressbar.jsx"></script>
+		<script src="../components/js/japaneseTransitions.js"></script>
 		<script
 			data-name="BMC-Widget" 
 			data-cfasync="false" 
@@ -40,88 +97,127 @@ const { title, description, pubDate, heroImage } = Astro.props;
 			data-y_margin="18"
 			>
 		</script>
+		<SchemaOrg
+			type="blogPosting"
+			title={title}
+			description={description}
+			image={heroImage}
+			datePublished={pubDate}
+			language={validLanguage}
+			breadcrumbs={breadcrumbs}
+		/>
 	</head>
-
 	<body>
-		<!-- Google Tag Manager (noscript) -->
-			<noscript>
-				<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMXWL72L" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-			</noscript>
-		<!-- End Google Tag Manager (noscript) -->
+		<Header currentLanguage={validLanguage} client:load transition:persist />
+		<div id="progress-bar"></div>
 		<main>
-			<Header />
-			<div id="progress-bar"></div>
+			<div class="breadcrumbs-container" transition:animate={paperSlide({ duration: '0.5s' })}>
+				<nav class="breadcrumbs" aria-label="Breadcrumbs">
+					<ol>
+						<li>
+							<a href={homeUrl}>{t.home}</a>
+							<span class="separator">/</span>
+						</li>
+						<li>
+							<a href={blogUrl}>{t.blog}</a>
+							<span class="separator">/</span>
+						</li>
+						<li>
+							<span class="current-page">{title}</span>
+						</li>
+					</ol>
+				</nav>
+			</div>
 			<article>
-
-				<div class="hero-image">
+				<div class="hero-image jp-paper-fold" transition:animate={inkDrop({ duration: '0.8s' })}>
 					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
 				</div>
-				
 				<div class="prose">
 					<div class="title">
-						<div class="date" transition:name="blog_date">
-							<FormattedDate date={pubDate} />
+						<div class="date" transition:name="blog_date" transition:animate={sakuraFade({ duration: '0.6s' })}>
+							<FormattedDate date={pubDate} language={validLanguage} />
 						</div>
-						<h1 transition:name="blog_title">{title}</h1>
+						<h1 transition:name="blog_title" transition:animate={sakuraFade({ duration: '0.6s' })}>{title}</h1>
 						<hr />
 					</div>
 					<slot />
+					<div class="back-link" transition:animate={wipeRight({ duration: '0.5s' })}>
+						<a href={blogUrl}>&larr; {t.backToBlog}</a>
+					</div>
 				</div>
-
 			</article>
-			<Newsletter />
-			<ReadMore />
-			<Coffee />
-			<Footer />
+			<div class="newsletter-container" transition:animate={inkDrop({ duration: '0.7s' })}>
+				<Newsletter language={validLanguage} />
+			</div>
+			<ReadMore language={validLanguage} transition:animate={paperSlide({ duration: '0.6s' })} />
+			<Coffee language={validLanguage} client:visible transition:animate={sakuraFade({ duration: '0.5s' })} />
+			<Footer language={validLanguage} transition:animate={dissolve({ duration: '0.4s' })} />
 		</main>
 	</body>
 </html>
 
-
 <style>
-	
 	article {
 		display: flex;
 		flex-direction: column;
 		padding: 2.5% 20%;
 	}
-		
+
+	.newsletter-container{
+		margin: 0 auto;
+		max-width: 950px;
+	}
 	
 	.hero-image img {
 		display: block;
 		margin: 0 auto;
 		border-radius: 1rem;
 	}
+	
 	.prose {
 		margin: auto;
 		color: black;
 		line-height: 2.5;
 	}
+	
 	.title {
 		padding: 2.5rem 10rem;
 		text-align: center;
 		line-height: 2;
 	}
+	
 	.title h1 {
 		text-align: center;
 		font-size: 2rem;
 		font-weight: 700;
 		line-height: normal;
 	}
-
 	
 	.date {
 		margin-bottom: 0.5em;
 		color: gray;
 	}
+	
 	.last-updated-on {
 		font-style: italic;
 	}
-
-
+	
+	.back-link {
+		margin-top: 2rem;
+	}
+	
+	.back-link a {
+		text-decoration: none;
+		color: var(--jp-primary-color);
+	}
+	
+	.back-link a:hover {
+		text-decoration: underline;
+	}
+	
 	#progress-bar {
-		background: linear-gradient(to right, #FF3131, #FFA500);
-		position: absolute; /* Initial position */
+		background: linear-gradient(to right, var(--jp-primary-color), var(--jp-accent-color));
+		position: absolute;
 		width: 100%;
 		top: 0;
 		box-sizing: border-box;
@@ -130,29 +226,87 @@ const { title, description, pubDate, heroImage } = Astro.props;
 		height: .5rem;
 		width: var(--progress);
 	}
-
+	
+	.breadcrumbs-container {
+		padding: 1rem 20%;
+		background: linear-gradient(to right, var(--jp-background-color), var(--jp-secondary-color));
+		box-shadow: 0 2px 8px var(--jp-shadow-color);
+	}
+	
+	.breadcrumbs ol {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		flex-wrap: wrap;
+	}
+	
+	.breadcrumbs li {
+		display: flex;
+		align-items: center;
+		color: #6d4e70;
+		font-size: 0.9rem;
+	}
+	
+	.breadcrumbs a {
+		color: #6d4e70;
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+	
+	.breadcrumbs a:hover {
+		color: var(--jp-primary-color);
+		text-decoration: underline;
+	}
+	
+	.breadcrumbs .separator {
+		margin: 0 0.5rem;
+		color: #ccc;
+	}
+	
+	.breadcrumbs .current-page {
+		color: var(--jp-primary-color);
+		font-weight: 500;
+		max-width: 200px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	
 	/* Tablet */
 	@media screen and (max-width: 1024px) {
 		article {
 			padding: 2.5% 10%;
 		}
-
+		
 		.title {
-		padding: 2.5rem 0;
+			padding: 2.5rem 0;
+		}
+		
+		.breadcrumbs-container {
+			padding: 1rem 10%;
 		}
 	}
-
+	
 	@media screen and (max-width: 720px) {
 		article {
 			padding: 2.5% 5%;
 		}
-
 		
-
 		p {
 			line-height: 2;
-
 		}
 		
+		.breadcrumbs-container {
+			padding: 0.75rem 5%;
+		}
+		
+		.breadcrumbs li {
+			font-size: 0.8rem;
+		}
+		
+		.breadcrumbs .current-page {
+			max-width: 150px;
+		}
 	}
 </style>

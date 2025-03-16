@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import BlogHead from "../../components/blog/BlogHead.astro";
+import Header from "../../components/layout/Header.jsx";
+import Hero from "../../components/ui/Hero.astro";
+import Footer from "../../components/layout/Footer.astro";
+import SchemaOrg from "../../components/common/SchemaOrg.astro";
+import { ClientRouter } from 'astro:transitions';
+import JapaneseTheme from '../../components/theme/JapaneseTheme.astro';
+import { dissolve, sakuraFade } from '../../components/theme/JapaneseTransitions';
+
+const currentLanguage = 'ja';
+
+const translations = {
+  title: "ビビリシャス | 英語 ⇄ 日本語翻訳",
+  description: "ビビリシャスへようこそ。英語、日本語、タミル語の架け橋。",
+};
+
+const breadcrumbs = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "ホーム",
+    "item": "https://bibilicious.com/ja"
+  }
+];
+---
+
+<html lang="ja" class="jp-theme jp-texture" transition:animate={dissolve({ duration: '0.7s' })}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{translations.title}</title>
+    <meta name="description" content={translations.description} />
+    <BlogHead title={translations.title} description={translations.description} language={currentLanguage} />
+    <ClientRouter />
+    <JapaneseTheme />
+    <SchemaOrg
+      type="website"
+      title={translations.title}
+      description={translations.description}
+      language={currentLanguage}
+      breadcrumbs={breadcrumbs}
+    />
+  </head>
+  <body>
+    <Header currentLanguage={currentLanguage} client:load transition:persist />
+    <main>
+      <Hero language={currentLanguage} transition:animate={sakuraFade({ duration: '0.6s' })} />
+      <Footer language={currentLanguage} transition:animate={dissolve({ duration: '0.4s' })} />
+    </main>
+  </body>
+</html> 

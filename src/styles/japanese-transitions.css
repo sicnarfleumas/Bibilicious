@@ -1,0 +1,289 @@
+/* Japanese-inspired transitions for the entire website */
+
+/* Wipe transitions (inspired by traditional Japanese theater transitions) */
+@keyframes jp-wipe-out-right {
+  0% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+  }
+}
+
+@keyframes jp-wipe-in-right {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes jp-wipe-out-left {
+  0% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+}
+
+@keyframes jp-wipe-in-left {
+  0% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* Dissolve transition (inspired by ink in water) */
+@keyframes jp-dissolve-out {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(8px);
+  }
+}
+
+@keyframes jp-dissolve-in {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Sakura (cherry blossom) fade transition */
+@keyframes jp-sakura-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px) rotate(5deg);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes jp-sakura-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) rotate(-5deg);
+    filter: brightness(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: brightness(1);
+  }
+}
+
+/* Ink drop transition (inspired by sumi-e painting) */
+@keyframes jp-ink-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: contrast(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: contrast(1.1);
+  }
+}
+
+@keyframes jp-ink-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+    filter: contrast(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: contrast(1);
+  }
+}
+
+/* Paper slide transition (inspired by sliding shoji screens) */
+@keyframes jp-paper-slide-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-30px);
+    box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes jp-paper-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+    box-shadow: -10px 0 15px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes jp-paper-slide-out-reverse {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(30px);
+    box-shadow: -10px 0 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes jp-paper-slide-in-reverse {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+    box-shadow: 10px 0 15px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/* Japanese theme variables */
+:root {
+  --jp-primary-color: #ff6782;
+  --jp-secondary-color: #ffeef2;
+  --jp-accent-color: #abffb0;
+  --jp-text-color: #333;
+  --jp-background-color: #fff9f9;
+  --jp-border-color: #f0e0e0;
+  --jp-shadow-color: rgba(0, 0, 0, 0.05);
+  --jp-font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Japanese theme global styles */
+.jp-theme {
+  font-family: var(--jp-font-family);
+  background-color: var(--jp-background-color);
+  color: var(--jp-text-color);
+}
+
+.jp-theme h1, 
+.jp-theme h2, 
+.jp-theme h3, 
+.jp-theme h4, 
+.jp-theme h5, 
+.jp-theme h6 {
+  font-family: var(--jp-font-family);
+  position: relative;
+}
+
+.jp-theme a {
+  color: var(--jp-primary-color);
+  transition: all 0.3s ease;
+}
+
+.jp-theme a:hover {
+  color: var(--jp-primary-color);
+  text-decoration: none;
+}
+
+.jp-theme button,
+.jp-theme .button {
+  background-color: var(--jp-secondary-color);
+  color: var(--jp-primary-color);
+  border: 1px solid var(--jp-border-color);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-family: var(--jp-font-family);
+  transition: all 0.3s ease;
+}
+
+.jp-theme button:hover,
+.jp-theme .button:hover {
+  background-color: var(--jp-primary-color);
+  color: white;
+}
+
+/* Paper texture background */
+.jp-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* Ink brush text effect */
+.jp-brush-text {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* Paper fold effect for images */
+.jp-paper-fold {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.jp-paper-fold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent rgba(0, 0, 0, 0.05) transparent transparent;
+}
+
+/* Ripple effect */
+.jp-ripple {
+  position: fixed;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(156, 146, 172, 0.2) 0%, rgba(156, 146, 172, 0) 70%);
+  transform: scale(0);
+  animation: jp-ripple-effect 1s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes jp-ripple-effect {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+    transform: scale(0);
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    margin-left: -250px;
+    margin-top: -250px;
+    opacity: 0;
+    transform: scale(1);
+  }
+} 

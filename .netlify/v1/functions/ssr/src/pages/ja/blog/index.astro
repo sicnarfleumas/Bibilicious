@@ -1,0 +1,199 @@
+---
+import BlogHead from '../../../components/blog/BlogHead.astro';
+import Header from '../../../components/layout/Header.astro';
+import Footer from '../../../components/layout/Footer.astro';
+import Coffee from '../../../components/ui/Coffee.astro';
+import FormattedDate from '../../../components/blog/FormattedDate.astro';
+import SchemaOrg from '../../../components/common/SchemaOrg.astro';
+import ReadMore from '../../../components/blog/ReadMore.astro';
+
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
+import { getCollection } from 'astro:content';
+
+import { ViewTransitions } from 'astro:transitions';
+
+const currentLanguage = 'ja';
+
+// Get posts for Japanese language
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(post => post.data.language === currentLanguage)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Japanese translations
+const translations = {
+  title: "ビビリシャスブログ | 英語 ⇄ 日本語翻訳",
+  description: "日本語学習、翻訳のヒント、個人的な経験についての記事をお読みください。",
+  latestPosts: '🌸 最新の記事:',
+  readMore: '続きを読む',
+};
+
+// Generate breadcrumbs for the blog index
+const breadcrumbs = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "ホーム",
+    "item": "https://bibilicious.com/ja"
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "ブログ",
+    "item": "https://bibilicious.com/ja/blog"
+  }
+];
+
+// Japanese title and description
+const jaTitle = 'ビビリシャス | 英語 ⇄ 日本語翻訳';
+const jaDescription = 'ビビリシャスへようこそ。英語、日本語、タミル語の言語の架け橋です。';
+---
+
+<!doctype html>
+<html lang={currentLanguage}>
+	<head>
+		<!-- Google Tag Manager -->
+		<script type="text/partytown">
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-MMXWL72L');
+		</script>
+		<!-- End Google Tag Manager -->
+		<BlogHead title={translations.title} description={translations.description} language={currentLanguage} />
+		<ViewTransitions/>
+		<!-- Schema.org structured data -->
+		<SchemaOrg 
+			type="blog"
+			title={translations.title}
+			description={translations.description}
+			language={currentLanguage}
+			breadcrumbs={breadcrumbs}
+		/>
+	</head>
+	
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMXWL72L" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+		<main>
+		<Header currentLanguage={currentLanguage} />
+
+			<section>
+				<h1>{translations.latestPosts}</h1>
+				<ul>
+					{
+						posts.map((post) => (
+							<li>
+								<a href={`/ja/blog/${post.slug}/`}>
+									<div class="title" transition:name={`blog_title_${post.slug}`}>
+										<h2>{post.data.title}</h2>
+									</div>
+									<div class="date" transition:name={`blog_date_${post.slug}`}>
+										<FormattedDate date={post.data.pubDate} language={currentLanguage} />
+									</div>
+									<div class="description">
+										<p>{post.data.description}</p>
+									</div>
+									<div class="read-more">
+										{translations.readMore} →
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+			<Coffee language={currentLanguage} />
+			<ReadMore language={currentLanguage} />
+			<Footer language={currentLanguage} />
+		</main>
+	</body>
+</html>
+
+<style>
+	h1 {
+		padding-bottom: 2rem;
+	}
+	section {
+		padding: 2.5% 20%;
+	}
+
+	.bottom {
+		display: flex;
+		justify-content: space-between;
+		padding-top: 1rem;
+	}
+
+	.description {
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 2.5;
+	}
+
+	.title {
+		font-size: 1.5rem;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 150%;
+	}
+
+	.date {
+		font-weight: 700;
+		line-height: 150%;
+	}
+
+	li {
+		background-color: white;
+		padding: 2.5rem;
+		border-radius: 1.5rem;
+	}
+
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	ul li {
+		width: calc(50% - 1rem);
+	}
+
+	ul li:first-child {
+		width: 100%;
+		background: rgba(255, 103, 130, 0.72);
+	}
+	ul li * {
+		text-decoration: none;
+		transition: 0.2s ease;
+	}
+	
+	ul li:hover {
+		transition: 0.2s ease;
+		transform: scale(1.05);
+		box-shadow: 0rem .5rem 1rem #848484;
+	}
+
+	/* tablet */
+	@media screen and (max-width: 1024px) {
+		section {
+			padding: 2.5% 10%;
+		}
+
+		ul li {
+			width: 100%;
+		}
+	}
+
+	/* mobile */
+	@media screen and (max-width: 768px) {
+		section {
+			padding: 2.5% 5%;
+		}
+	}
+</style> 

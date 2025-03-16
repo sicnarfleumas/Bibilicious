@@ -7,21 +7,23 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "update-blog-languages": "node scripts/update-blog-languages.js"
   },
   "dependencies": {
-    "@astrojs/db": "^0.14.8",
     "@astrojs/mdx": "^4.2.0",
     "@astrojs/netlify": "^6.2.3",
     "@astrojs/react": "^4.2.1",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
-    "@fontsource-variable/inter": "^5.0.15",
-    "@fontsource/berkshire-swash": "^5.0.12",
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource/berkshire-swash": "^5.2.5",
+    "@fontsource/noto-sans-jp": "^5.2.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "astro": "^5.5.2",
     "express": "^4.18.2",
+    "gray-matter": "^4.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.4.5"

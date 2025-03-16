@@ -1,0 +1,272 @@
+---
+// Import everything necessary
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+// Get all blog posts
+const posts: CollectionEntry<'blog'>[] = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+interface Props {
+    language?: 'en' | 'ja' | 'ta';
+}
+
+const { language = 'en' } = Astro.props;
+
+// Get current year for copyright
+const currentYear = new Date().getFullYear();
+
+// Translations for the footer
+const translations = {
+    en: {
+        contact: "Contact",
+        links: "Links",
+        socials: "Socials",
+        recentPosts: "Recent Posts",
+        home: "Home",
+        blog: "Blog",
+        donate: "Donate",
+        copyright: `© ${currentYear} Bibilicious. All rights reserved.`,
+        designedBy: 'Designed and developed by'
+    },
+    ja: {
+        contact: "お問い合わせ",
+        links: "リンク",
+        socials: "ソーシャル",
+        recentPosts: "最新の記事",
+        home: "ホーム",
+        blog: "ブログ",
+        donate: "寄付する",
+        copyright: `© ${currentYear} ビビリシャス. 全著作権所有.`,
+        designedBy: 'デザイン・開発：'
+    },
+    ta: {
+        contact: "தொடர்பு",
+        links: "இணைப்புகள்",
+        socials: "சமூக ஊடகங்கள்",
+        recentPosts: "சமீபத்திய பதிவுகள்",
+        home: "முகப்பு",
+        blog: "வலைப்பதிவு",
+        donate: "நன்கொடை",
+        copyright: `© ${currentYear} பிபிலிசியஸ். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.`,
+        designedBy: 'வடிவமைத்து உருவாக்கியது'
+    }
+};
+
+const t = translations[language];
+
+// Generate the correct URLs based on language
+const homeUrl = language === 'en' ? '/' : `/${language}`;
+const blogUrl = language === 'en' ? '/blog' : `/${language}/blog`;
+const contactUrl = language === 'en' ? '/contact' : `/${language}/contact`;
+
+// Generate the correct blog post URLs based on language
+function getBlogUrl(slug: string) {
+    return language === 'en' ? `/blog/${slug}/` : `/${language}/blog/${slug}/`;
+}
+---
+
+<footer class={`footer ${language === 'ja' ? 'japanese-theme' : ''}`}>
+    <div class="container">
+        <div class="top">
+            <a href={homeUrl} class="logo">
+                {language === 'ja' ? 'ビビリシャス' : language === 'ta' ? 'பிபிலிசியஸ்' : 'Bibilicious'}
+            </a>
+        </div>
+        
+        <div class="wrapper">
+            <div class="info">
+                <h2>
+                    {t.contact}
+                </h2>
+                <a href="mailto:bibilicious@gmail.com" type="email">
+                    bibilicious@gmail.com
+                </a>
+                <p>India</p>
+            </div>
+            <div class="info">
+                <h2>{t.links}</h2>
+                <a href={homeUrl}>{t.home}</a>
+                <a href={blogUrl}>{t.blog}</a>
+                <a href={contactUrl}>{t.contact}</a>
+                <a href="https://www.buymeacoffee.com/bibilicious">{t.donate}</a>
+            </div>
+
+            <div class="info">
+                <h2>{t.socials}</h2>
+                <a href="">Langmate</a>
+                <a href="">Hello Talk</a>
+                <a href="">Instagram</a>
+            </div>
+
+            <div class="info">
+                <h2>{t.recentPosts}</h2>
+                {
+                    posts
+                        .filter(post => post.data.language === language)
+                        .slice(0, 2)
+                        .map(post => (
+                            <a href={getBlogUrl(post.slug)}>
+                                {post.data.title}
+                            </a>
+                        ))
+                }
+            </div>
+        </div>
+        
+        <div class="footer-copyright">
+            <p>{t.copyright}</p>
+            <p>
+                {t.designedBy} <a href="https://craftingclicks.com" target="_blank" rel="noopener">Crafting Clicks</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background-color: #FFDAB9;
+        padding: 3rem 0;
+        width: 100%;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 0 1rem;
+        max-width: 1200px;
+    }
+
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 2rem;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #000;
+        text-decoration: none;
+        font-family: 'Berkshire Swash', sans-serif;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .info {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #000;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    a, p {
+        display: block;
+        font-size: 1rem;
+        color: #000 !important;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        font-weight: 400;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        text-decoration: underline !important;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    .logo:hover {
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+    }
+
+    .footer-copyright {
+        text-align: center;
+        padding-top: 1.5rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .footer-copyright p {
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        color: #000;
+    }
+    
+    .footer-copyright a {
+        display: inline;
+        text-decoration: underline;
+        color: #000;
+        font-weight: 500;
+    }
+
+    .japanese-theme {
+        background-color: #fff9f9;
+    }
+
+    /* tablet */
+    @media screen and (max-width: 1024px) {
+        .container {
+            max-width: 90%;
+        }
+        
+        .wrapper {
+            gap: 1.5rem;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+        }
+    }
+
+    /* mobile */
+    @media screen and (max-width: 768px) {
+        .container {
+            max-width: 95%;
+        }
+        
+        .top {
+            text-align: left;
+            padding-bottom: 1.5rem;
+        }
+        
+        .wrapper {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .info {
+            width: auto;
+            flex: 1 1 45%;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-copyright {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+        }
+    }
+</style>

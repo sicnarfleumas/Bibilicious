@@ -1,0 +1,40 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BlogPost from '../../../layouts/BlogPost.astro';
+
+// Add prerender directive for static generation
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const nonEnglishPosts = posts.filter(post => post.data.language !== 'en');
+  
+  return nonEnglishPosts.map((post) => {
+    const language = post.data.language;
+    const slug = post.slug;
+    
+    return {
+      params: { 
+        lang: language, 
+        slug: slug 
+      },
+      props: { 
+        lang: language,
+        post: post
+      },
+    };
+  });
+}
+
+type Props = {
+  lang: string;
+  post: CollectionEntry<'blog'>;
+};
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data}>
+  <Content />
+</BlogPost> 

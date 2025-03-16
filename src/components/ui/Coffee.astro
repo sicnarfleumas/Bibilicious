@@ -1,0 +1,382 @@
+---
+interface Props {
+    language?: 'en' | 'ja' | 'ta';
+}
+
+const { language = 'en' } = Astro.props;
+
+// Translations for the Coffee component
+const translations = {
+    en: {
+        title: "Support The Blog!!",
+        description: "Love what you're reading on my blog? You can be a part of the fun by buying me a coffee! Your support keeps the good vibes flowing and the content coming. Whether it's a one-time caffeine boost or a recurring sip, every drop counts – thanks a latte for being awesome!"
+    },
+    ja: {
+        title: "ブログをサポートする!!",
+        description: "私のブログの内容を気に入っていただけましたか？コーヒーを買って、この楽しさの一部になりませんか！あなたのサポートが良い雰囲気を保ち、コンテンツを続けるための力になります。一度きりのカフェイン補給でも、定期的な一口でも、すべてが大切です - 素晴らしいサポートに感謝します！"
+    },
+    ta: {
+        title: "வலைப்பதிவை ஆதரிக்கவும்!!",
+        description: "என் வலைப்பதிவில் நீங்கள் படிப்பதை விரும்புகிறீர்களா? எனக்கு ஒரு காபி வாங்குவதன் மூலம் நீங்கள் இந்த மகிழ்ச்சியின் ஒரு பகுதியாக இருக்கலாம்! உங்கள் ஆதரவு நல்ல அதிர்வலைகளை பாய்ச்சி, உள்ளடக்கத்தை தொடர்ந்து வழங்க உதவுகிறது. ஒரு முறை காபி அல்லது தொடர்ந்து ஆதரவு, ஒவ்வொரு துளியும் முக்கியம் - அற்புதமாக இருப்பதற்கு மிக்க நன்றி!"
+    }
+};
+
+const t = translations[language];
+const coffeeLink = "https://www.buymeacoffee.com/bibilicious";
+---
+
+<section class="coffee">
+    <div class="sakura-container">
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+    </div>
+    <div class="wrapper">
+        <div class="left">
+            <div class="image-container"></div>
+        </div>
+        <div class="right">
+            <h2 class="title">
+                {t.title}
+            </h2>
+            <p>
+                {t.description}
+            </p>
+            <div class="button-container">
+                <a href={coffeeLink} target="_blank" class="coffee-button">
+                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .coffee {
+        position: relative;
+        background: linear-gradient(to bottom, #f9f5f8, #f3e9f1);
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    }
+
+    .sakura-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .sakura-petal {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background: linear-gradient(to bottom right, #fff8fa, #ffcce6);
+        border-radius: 15px 0px;
+        opacity: 0.7;
+        animation: fall 10s linear infinite;
+        box-shadow: 0 0 5px rgba(255, 204, 230, 0.3);
+    }
+
+    .sakura-petal::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        background: linear-gradient(to bottom right, #fff8fa, #ffcce6);
+        border-radius: 15px 0px;
+        transform: rotate(45deg);
+    }
+
+    .sakura-petal::after {
+        content: '';
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 3px;
+        height: 3px;
+        background-color: #ffb7d9;
+        border-radius: 50%;
+    }
+
+    .sakura-petal:nth-child(odd) {
+        background: linear-gradient(to bottom right, #fff8fa, #ffc0e0);
+    }
+
+    .sakura-petal:nth-child(odd)::before {
+        background: linear-gradient(to bottom right, #fff8fa, #ffc0e0);
+    }
+
+    .sakura-petal:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        transform: scale(1.2);
+        animation-duration: 12s;
+    }
+
+    .sakura-petal:nth-child(2) {
+        left: 25%;
+        animation-delay: 1.5s;
+        transform: scale(0.9);
+        animation-duration: 9s;
+    }
+
+    .sakura-petal:nth-child(3) {
+        left: 40%;
+        animation-delay: 3s;
+        transform: scale(1.1);
+        animation-duration: 11s;
+    }
+
+    .sakura-petal:nth-child(4) {
+        left: 55%;
+        animation-delay: 4.5s;
+        transform: scale(0.8);
+        animation-duration: 10s;
+    }
+
+    .sakura-petal:nth-child(5) {
+        left: 70%;
+        animation-delay: 6s;
+        transform: scale(1.3);
+        animation-duration: 13s;
+    }
+
+    .sakura-petal:nth-child(6) {
+        left: 85%;
+        animation-delay: 7.5s;
+        transform: scale(1);
+        animation-duration: 8s;
+    }
+
+    .sakura-petal:nth-child(7) {
+        left: 20%;
+        animation-delay: 5s;
+        transform: scale(1.1);
+        animation-duration: 14s;
+    }
+
+    .sakura-petal:nth-child(8) {
+        left: 65%;
+        animation-delay: 2.5s;
+        transform: scale(0.9);
+        animation-duration: 9.5s;
+    }
+
+    .sakura-petal:nth-child(9) {
+        left: 15%;
+        animation-delay: 8s;
+        transform: scale(0.7);
+        animation-duration: 10.5s;
+    }
+
+    .sakura-petal:nth-child(10) {
+        left: 45%;
+        animation-delay: 9s;
+        transform: scale(1.4);
+        animation-duration: 12.5s;
+    }
+
+    .sakura-petal:nth-child(11) {
+        left: 75%;
+        animation-delay: 7s;
+        transform: scale(0.6);
+        animation-duration: 9s;
+    }
+
+    .sakura-petal:nth-child(12) {
+        left: 95%;
+        animation-delay: 4s;
+        transform: scale(1.2);
+        animation-duration: 11.5s;
+    }
+
+    @keyframes fall {
+        0% {
+            top: -10%;
+            transform: translateX(0) rotate(0deg) scale(1);
+        }
+        10% {
+            transform: translateX(12px) rotate(45deg) scale(1.05);
+        }
+        20% {
+            transform: translateX(15px) rotate(90deg) scale(1.1);
+        }
+        30% {
+            transform: translateX(8px) rotate(135deg) scale(1.05);
+        }
+        40% {
+            transform: translateX(0) rotate(180deg) scale(1);
+        }
+        50% {
+            transform: translateX(-8px) rotate(225deg) scale(0.95);
+        }
+        60% {
+            transform: translateX(-15px) rotate(270deg) scale(0.9);
+        }
+        70% {
+            transform: translateX(-12px) rotate(315deg) scale(0.95);
+        }
+        80% {
+            transform: translateX(-5px) rotate(360deg) scale(1);
+        }
+        90% {
+            transform: translateX(8px) rotate(405deg) scale(1.05);
+        }
+        100% {
+            top: 100%;
+            transform: translateX(15px) rotate(450deg) scale(1.1);
+        }
+    }
+
+    .wrapper {
+        position: relative;
+        display: flex;
+        padding: 3rem 15%;
+        z-index: 2;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .left {
+        width: 40%;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    .image-container {
+        width: 100%;
+        height: 300px;
+        background: url("../../assets/images/Yup.png") no-repeat center;
+        background-size: contain;
+        transform: translateY(-5rem);
+        transition: transform 0.3s ease;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .title {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #6d4e70;
+        font-size: 1.8rem;
+        margin: 0;
+        text-align: center;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 50%;
+        height: 3px;
+        background: linear-gradient(to right, #ffcce6, #f3e9f1, #ffcce6);
+    }
+
+    p {
+        color: #5a5a5a;
+        line-height: 1.8;
+        font-size: 1rem;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .coffee-button {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: inline-block;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background: url("../../assets/images/Yup.png") no-repeat center;
+    }
+
+    .coffee-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .coffee-button img {
+        height: 60px;
+        width: 217px;
+        display: block;
+    }
+
+    /* Tablet */
+    @media screen and (max-width: 1024px) {
+        .wrapper {
+            flex-direction: column;
+            padding: 2rem 10%;
+        }
+
+        .left {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-container {
+            width: 60%;
+            height: 200px;
+            transform: translateY(0);
+            margin-bottom: 1rem;
+        }
+
+        .right {
+            width: 100%;
+        }
+    }
+
+    /* Mobile */
+    @media screen and (max-width: 640px) {
+        .coffee {
+            margin: 10% 5%;
+        }
+
+        .wrapper {
+            padding: 1.5rem 5%;
+        }
+
+        .image-container {
+            width: 80%;
+            height: 150px;
+        }
+
+        .title {
+            font-size: 1.5rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+        }
+
+        .coffee-button img {
+            height: 50px;
+            width: 180px;
+        }
+    }
+</style>

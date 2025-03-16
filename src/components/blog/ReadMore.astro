@@ -1,0 +1,178 @@
+---
+// Import everything necessary
+import { getCollection, type CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+    language?: 'en' | 'ja' | 'ta';
+}
+
+const { language = 'en' } = Astro.props;
+
+// Get all blog posts for the current language
+const allPosts = await getCollection('blog');
+const posts = allPosts
+    .filter(post => post.data.language === language)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Translations for the component
+const translations = {
+    en: {
+        recentPosts: "RECENT POSTS"
+    },
+    ja: {
+        recentPosts: "最新の記事"
+    },
+    ta: {
+        recentPosts: "சமீபத்திய பதிவுகள்"
+    }
+};
+
+const t = translations[language];
+
+// Generate the correct blog URL based on language
+function getBlogUrl(post: CollectionEntry<'blog'>) {
+    const slug = post.slug;
+    return language === 'en' ? `/blog/${slug}/` : `/${language}/blog/${slug}/`;
+}
+
+---
+
+<section class="ReadMore">
+    <h2>{t.recentPosts}</h2>
+    <!-- Return the 4 most recent posts from the Astro Collection blog -->
+    <div class="wrapper">
+        {
+            posts.slice(0, 4).map((post) => (
+                <a href={getBlogUrl(post)}>
+                    <h4>{post.data.title}</h4>
+                    <p>{post.data.description}</p>
+                    <div class="bottom">
+                        <span class="date"><FormattedDate date={post.data.pubDate} /></span>
+                        <span class="category">{post.data.category}</span>
+                    </div>
+                </a>
+            ))
+        }
+    </div>
+</section>
+
+
+<style>
+    .ReadMore {
+        display: flex;
+        flex-direction: column;
+        padding: 2.5% 0;
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #4D4D4D;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        width: 100%;
+    }
+
+    a {
+        display: block;
+        padding: 1.75rem;
+        background-color: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+
+    a:hover {
+        text-decoration: none;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    h4 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #333;
+        line-height: 1.4;
+    }
+
+    p {
+        font-size: 1rem;
+        color: #4D4D4D;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.95rem;
+        margin-top: auto;
+    }
+
+    .category {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .date {
+        color: #666;
+    }
+
+    /* Tablet */
+    @media screen and (max-width: 1024px) {
+        .ReadMore {
+            max-width: 90%;
+        }
+        
+        a {
+            padding: 1.5rem;
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+        }
+    }
+
+    /* Mobile */
+    @media screen and (max-width: 768px) {
+        .ReadMore {
+            max-width: 95%;
+        }
+
+        .wrapper {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        a {
+            padding: 1.25rem;
+        }
+        
+        h4 {
+            font-size: 1.1rem;
+        }
+    }
+</style>

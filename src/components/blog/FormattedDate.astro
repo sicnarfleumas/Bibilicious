@@ -1,0 +1,27 @@
+---
+interface Props {
+	date: Date;
+	language?: 'en' | 'ja' | 'ta';
+}
+
+const { date, language = 'en' } = Astro.props;
+
+// Map language codes to locale codes
+const localeMap = {
+	'en': 'en-US',
+	'ja': 'ja-JP',
+	'ta': 'ta-IN'
+};
+
+const locale = localeMap[language] || 'en-US';
+---
+
+<time datetime={date.toISOString()}>
+	{
+		date.toLocaleDateString(locale, {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		})
+	}
+</time>

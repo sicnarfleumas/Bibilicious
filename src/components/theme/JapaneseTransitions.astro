@@ -1,0 +1,173 @@
+---
+// JapaneseTransitions.astro
+// This component defines custom Japanese-inspired transitions for use with Astro's ClientRouter
+
+// Export transition functions for use in other components
+export const wipeRight = (options = {}) => ({
+  forwards: {
+    old: { name: 'jp-wipe-out-right', ...options },
+    new: { name: 'jp-wipe-in-right', ...options }
+  },
+  backwards: {
+    old: { name: 'jp-wipe-out-left', ...options },
+    new: { name: 'jp-wipe-in-left', ...options }
+  }
+});
+
+export const dissolve = (options = {}) => ({
+  forwards: {
+    old: { name: 'jp-dissolve-out', ...options },
+    new: { name: 'jp-dissolve-in', ...options }
+  },
+  backwards: {
+    old: { name: 'jp-dissolve-out', ...options },
+    new: { name: 'jp-dissolve-in', ...options }
+  }
+});
+
+export const sakuraFade = (options = {}) => ({
+  forwards: {
+    old: { name: 'jp-sakura-out', ...options },
+    new: { name: 'jp-sakura-in', ...options }
+  },
+  backwards: {
+    old: { name: 'jp-sakura-out', ...options },
+    new: { name: 'jp-sakura-in', ...options }
+  }
+});
+
+export const inkDrop = (options = {}) => ({
+  forwards: {
+    old: { name: 'jp-ink-out', ...options },
+    new: { name: 'jp-ink-in', ...options }
+  },
+  backwards: {
+    old: { name: 'jp-ink-out', ...options },
+    new: { name: 'jp-ink-in', ...options }
+  }
+});
+---
+
+<style is:global>
+  /* Wipe transitions (inspired by traditional Japanese theater transitions) */
+  @keyframes jp-wipe-out-right {
+    0% {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+    100% {
+      clip-path: inset(0 0 0 100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes jp-wipe-in-right {
+    0% {
+      clip-path: inset(0 100% 0 0);
+      opacity: 0;
+    }
+    100% {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes jp-wipe-out-left {
+    0% {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+    100% {
+      clip-path: inset(0 100% 0 0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes jp-wipe-in-left {
+    0% {
+      clip-path: inset(0 0 0 100%);
+      opacity: 0;
+    }
+    100% {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+  }
+
+  /* Dissolve transition (inspired by ink in water) */
+  @keyframes jp-dissolve-out {
+    0% {
+      opacity: 1;
+      filter: blur(0);
+    }
+    100% {
+      opacity: 0;
+      filter: blur(8px);
+    }
+  }
+
+  @keyframes jp-dissolve-in {
+    0% {
+      opacity: 0;
+      filter: blur(8px);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  /* Sakura (cherry blossom) fade transition */
+  @keyframes jp-sakura-out {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+      filter: brightness(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(20px) rotate(5deg);
+      filter: brightness(1.2);
+    }
+  }
+
+  @keyframes jp-sakura-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px) rotate(-5deg);
+      filter: brightness(1.2);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+      filter: brightness(1);
+    }
+  }
+
+  /* Ink drop transition (inspired by sumi-e painting) */
+  @keyframes jp-ink-out {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+      filter: contrast(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.95);
+      filter: contrast(1.1);
+    }
+  }
+
+  @keyframes jp-ink-in {
+    0% {
+      opacity: 0;
+      transform: scale(1.05);
+      filter: contrast(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: contrast(1);
+    }
+  }
+</style> 
