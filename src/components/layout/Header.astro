@@ -43,6 +43,14 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 
 <ClientRouter />
 
+<!-- Global style to prevent horizontal overflow -->
+<style is:global>
+	html, body {
+		overflow-x: hidden;
+		max-width: 100%;
+	}
+</style>
+
 <header>
 	<div class="header-container">
 		<a href={currentLanguage === 'en' ? '/' : `/${currentLanguage}/`} class="logo" transition:animate={slide({ duration: 300 })}>
@@ -118,11 +126,19 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 		const nav = document.querySelector('nav');
 		const languageDropdown = document.querySelector('.language-current');
 		const languageOptions = document.querySelector('.language-options');
+		const body = document.querySelector('body');
 		
 		// Toggle mobile menu
 		const toggleMobileMenu = (): void => {
 			nav?.classList.toggle('open');
 			mobileMenuToggle?.classList.toggle('open');
+			
+			// Toggle body scroll lock when menu is open
+			if (nav?.classList.contains('open')) {
+				body?.classList.add('menu-open');
+			} else {
+				body?.classList.remove('menu-open');
+			}
 		};
 		
 		// Toggle language dropdown
@@ -153,6 +169,7 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 			languageDropdown?.removeEventListener('click', toggleLanguageDropdown);
 			document.removeEventListener('click', closeLanguageDropdown);
 			languageOptions?.removeEventListener('click', preventDropdownClose);
+			body?.classList.remove('menu-open');
 		};
 	};
 
@@ -186,6 +203,8 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 		-webkit-backdrop-filter: blur(10px);
 		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 		padding: 0.75rem 0;
+		width: 100%;
+		overflow-x: hidden;
 	}
 
 	.header-container {
@@ -195,6 +214,8 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.logo {
@@ -368,8 +389,29 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 
 	/* Mobile menu styles */
 	@media screen and (max-width: 768px) {
+		header {
+			overflow-x: hidden;
+		}
+		
+		body {
+			overflow-x: hidden;
+			position: relative;
+			width: 100%;
+		}
+		
+		body.menu-open {
+			overflow: hidden;
+		}
+		
 		.header-container {
-			padding: 0 1.5rem;
+			padding: 0 1rem;
+			width: 100%;
+		}
+
+		.logo {
+			font-size: 1.5rem;
+			z-index: 10;
+			position: relative;
 		}
 
 		nav {
@@ -382,11 +424,13 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 			background-color: white;
 			flex-direction: column;
 			justify-content: flex-start;
-			padding: 5rem 2rem 2rem;
+			padding: 5rem 1.5rem 2rem;
 			box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
 			transition: right 0.3s ease;
 			margin-left: 0;
 			z-index: 5;
+			overflow-y: auto;
+			overflow-x: hidden;
 		}
 
 		nav.open {
@@ -443,6 +487,8 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 
 		.mobile-menu-toggle {
 			display: flex;
+			z-index: 10;
+			position: relative;
 		}
 
 		.mobile-menu-toggle.open .bar:nth-child(1) {
@@ -455,6 +501,18 @@ const isContactPage = pathWithoutLang.startsWith('/contact');
 
 		.mobile-menu-toggle.open .bar:nth-child(3) {
 			transform: translateY(-9px) rotate(-45deg);
+		}
+		
+		/* Add overlay when menu is open */
+		nav.open::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: -1;
 		}
 	}
 
