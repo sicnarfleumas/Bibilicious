@@ -1,72 +1,22 @@
 ---
-import Form from '../components/react/newsletter'
+import { GoogleForm } from './GoogleForm';
 ---
-<!-- <Form/> -->
+
 <section class="contact">
-
-<div class="contact-form">
-
-    <h1>Let’s Make Words Dance! 💃🕺</h1>
-
-    <div class="wrapper">
-
-        <div class="left">
-
-            <p>
-                I'm pumped that you're thinking about diving into the awesome world of translations! 
-                Whether you’ve got a quirky document, a cool article, or just something super random that needs translating between Japanese, Tamil, and English, I’m here to make it happen.
-            </p>
-
+    <div class="contact-form">
+        <h1>Let's Make Words Dance! 💃🕺</h1>
+        <div class="wrapper">
+            <div class="left">
+                <p>
+                    I'm pumped that you're thinking about diving into the awesome world of translations! 
+                    Whether you've got a quirky document, a cool article, or just something super random that needs translating between Japanese, Tamil, and English, I'm here to make it happen.
+                </p>
+            </div>
+            <div class="right">
+                <GoogleForm client:load />
+            </div>
         </div>
-
-    <div class="right">
-
-        <form name="contact" netlify-honeypot="bot-field" action="/submit_handler.php" method="post" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact" />
-        
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" required />
-        
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email address" required />
-        
-            <label for="languages">Languages:</label>
-            <select id="languages" name="languages" required>
-                <option value="" disabled selected>Select a language</option>
-                <option value="english">English</option>
-                <option value="japanese">Japanese</option>
-                <option value="tamil">Tamil</option>
-            </select>
-        
-            <label for="docType">Document Type:</label>
-            <select id="docType" name="docType" required>
-                <option value="" disabled selected>Select document type</option>
-                <option value="article">Article</option>
-                <option value="blog">Blog</option>
-                <option value="email">Email</option>
-                <option value="socialMedia">Social Media Post</option>
-            </select>
-        
-            <label for="projectDetails">Project Details (max 200 words):</label>
-            <textarea
-                id="projectDetails"
-                name="projectDetails"
-                rows="4"
-                cols="50"
-                maxlength="200"
-                placeholder="Provide details about your project (max 200 words)"
-                required>
-            </textarea>
-        
-            <button type="submit">Submit</button>
-        </form>
-        
-
     </div>
-
-    </div>
-
-</div>
 </section>
 
 <style>
@@ -93,74 +43,11 @@ import Form from '../components/react/newsletter'
         align-content: space-between;
         gap: 2rem;
     }
-    
-    
-    label {
-        position: absolute;
-        left: -9999px;
-    }
-
-    form {
-        display: inline-flex;
-        flex-direction: column;
-        gap: 2rem;
-        width: 80%;
-    }
-
-    input {
-        box-sizing: border-box; 
-        margin: 0; 
-        padding: 0; 
-        border-width: 0 0 1px 1px;
-        outline: none; 
-        background-color: transparent; 
-        
-        padding: .5rem;
-
-    }
-
-    select {
-        box-sizing: border-box;
-        margin: 0; 
-        padding: .5rem;
-       
-        border-width: 0 0 1px 1px;
-        outline: none; 
-        background-color: transparent; 
-        
-    }
-
-    textarea {
-        box-sizing: border-box;
-        margin: 0;
-        padding: .5rem;
-        border-width: 0 0 1px 1px;
-        outline: none;
-        background-color: transparent;
-
-    }
-
-    
-    button {
-        margin: 0;
-        padding: 0;
-        border: 1px solid black;
-        background: none;
-        font: inherit;
-        color: inherit;
-        cursor: pointer;
-        outline: none;  
-    }
-
-    button:hover {
-        background-color: black;
-        color: #FFF;
-    }
 
     /* Tablet */
     @media screen and (max-width: 1024px) {
         .contact {
-        padding: 2.5% 10% 0%;
+            padding: 2.5% 10% 0%;
         }
 
         .wrapper {
@@ -170,45 +57,30 @@ import Form from '../components/react/newsletter'
         p {
             width: 100%;
             text-align: justify;
-        }
-
-        form {
-            width: 100%;
-        }
-
-        button {
-         width: fit-content;
-         padding: .15rem .25rem;   
+            line-height: 2;
         }
     }
 
     /* Mobile */
-
     @media screen and (max-width: 768px) {
         .contact {
             padding: 2.5% 5% 0%;
-
         }
 
         .contact-form {
             background-color: transparent;
-        }
-
-        .contact-form {
-            padding: 2rem 1rem;
-
+            padding: 1rem 0.5rem;
+            gap: 1rem;
         }
 
         p {
             width: 100%;
+            line-height: 1.8;
         }
 
         h1 {
             font-size: 1.75rem;
-        }
-
-        form {
-            gap: 1.25rem;
+            text-align: center;
         }
     }
 </style>

@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { GoogleNewsletterForm } from './GoogleForm';
 
 import bibi from "../assets/images/fas.png";
 import Coffee from "./Coffee.astro";
@@ -29,13 +30,9 @@ import Footer from "./Footer.astro";
         <div class="Newsletter box">
             <h2>Stay in the loop</h2>
             <p>Enjoy reading my blogs? leave your email behind and I will ping you every time I post some new content.</p>
-            <!-- Form with a email field and a submit button -->
-            <form name="signup" method="POST" data-netlify="true">
-                <label for="email" class="visually-hidden">Email:</label>
-                <input class="email" type="email" id="email" name="email" placeholder="Enter your email" required>
-                <button class="button" type="submit">Subscribe</button>
-            </form>
-            
+            <div class="newsletter-container">
+                <GoogleNewsletterForm client:load />
+            </div>
         </div>
 
         <div class="About box">

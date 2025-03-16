@@ -1,19 +1,13 @@
 ---
-
+import { GoogleNewsletterForm } from './GoogleForm';
 ---
 
 <section class="newsletter">
-
     <h2>NEWSLETTER SIGNUP!!!</h2>
     <p>Subscribe to know when a blog goes live! 🤗</p>
-
-    <form name="newsletter" method="POST" data-netlify="true">
-        <input class="email" type="email" name="email" id="email" placeholder="Email" required>
-        <input class="button" type="submit" value="Subscribe">
-    </form>
-
+    
+    <GoogleNewsletterForm client:load />
 </section>
-
 
 <style>
     .newsletter {
@@ -35,66 +29,20 @@
         line-height: 2;
     }
 
-    .email {
-        background: #fff;
-        color: #444;
-        font-size: 1.5625rem;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        border: none;
-        padding: .5rem 2rem;
-        outline: none;
-
-
-    }
-
-    .button {
-        background: #FF6782;
-        color: #fff;
-        font-size: 1.5625rem;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        padding: .5rem 2rem;
-        cursor: pointer;
-        border: none;
-
-
-    }
-
    /* Tablet */
-
     @media screen and (max-width: 1024px) {
-
-        .email, .button {
-            font-size: 1.25rem;
+        p {
+            width: 35ch;
         }
-
     }
-
-
 
     @media screen and (max-width: 768px) {
-        
         .newsletter {
             padding: 5rem 5%;
         }
 
-        
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        p {
             width: 100%;
-            gap: .5rem;
-
-        }
-
-        .email, .button {
-            font-size: 1.25rem;
         }
     }
-
-   
 </style>

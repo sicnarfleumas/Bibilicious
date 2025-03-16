@@ -1,37 +1,31 @@
 import { useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = import.meta.env.SUPABASE_URL;
-const supabaseKey = import.meta.env.SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 const EmailForm = () => {
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Insert the email into your Supabase table
-      const { data, error } = await supabase
-        .from('Newsletter')
-        .upsert([{ email }], { onConflict: ['email'] });
-
-      if (error) {
-        console.error('Error inserting data:', error.message);
-      } else {
-        console.log('Data inserted successfully:', data);
-      }
-
+      // Placeholder for email submission
+      // You can implement your preferred email storage solution here
+      console.log('Email submitted:', email);
+      
+      // Show success message
+      setMessage('Thank you for subscribing!');
+      
       // Clear the email input after submission
       setEmail('');
     } catch (error) {
       console.error('Error:', error.message);
+      setMessage('Something went wrong. Please try again.');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      {message && <p>{message}</p>}
       <label>
         Email:
         <input

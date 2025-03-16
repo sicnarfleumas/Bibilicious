@@ -22,7 +22,7 @@ import { ViewTransitions } from 'astro:transitions';
 					})(window,document,'script','dataLayer','GTM-MMXWL72L');
 				</script>
 			<!-- End Google Tag Manager -->
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Contact | ${SITE_TITLE}`} description="Get in touch for translation services between Japanese, Tamil, and English" />
 		<ViewTransitions />
 	</head>
 	<body>
@@ -38,12 +38,15 @@ import { ViewTransitions } from 'astro:transitions';
             <Form />
             <Coffee />
             <Footer />
-
 		</main>
 
 	</body>
 </html>
 
 <style>
-	
+	main {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
 </style>
