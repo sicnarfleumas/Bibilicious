@@ -9,6 +9,13 @@
   width: 80%;
 }
 
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
 .input, .select, .textarea {
   box-sizing: border-box;
   margin: 0;
@@ -20,6 +27,17 @@
   background-color: transparent;
   font-size: 1rem;
   font-family: inherit;
+}
+
+.inputError {
+  border-color: #dc3545;
+}
+
+.errorMessage {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
 }
 
 .textarea {
@@ -100,5 +118,9 @@
     padding: 0.4rem 1.2rem;
     font-size: 0.9rem;
     align-self: center;
+  }
+
+  .errorMessage {
+    font-size: 0.7rem;
   }
 } 

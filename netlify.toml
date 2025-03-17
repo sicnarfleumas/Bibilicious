@@ -55,6 +55,24 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
+  for = "/_astro/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css"
+
+[[redirects]]
+  from = "/_astro/*.css"
+  to = "/_astro/:splat.css"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/_astro/index.Dif9_gxa.css"
+  to = "/dist/_astro/index.Dif9_gxa.css"
+  status = 200
+  force = false
+
+[[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

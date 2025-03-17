@@ -66,16 +66,16 @@ function getBlogUrl(slug: string) {
 }
 ---
 
-<footer class={`footer ${language === 'ja' ? 'japanese-theme' : ''}`}>
-    <div class="container">
-        <div class="top">
-            <a href={homeUrl} class="logo">
+<footer class={`footer-container ${language === 'ja' ? 'footer-japanese-theme' : ''}`}>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <a href={homeUrl} class="footer-logo">
                 {language === 'ja' ? 'ビビリシャス' : language === 'ta' ? 'பிபிலிசியஸ்' : 'Bibilicious'}
             </a>
         </div>
         
-        <div class="wrapper">
-            <div class="info">
+        <div class="footer-wrapper">
+            <div class="footer-info">
                 <h2>
                     {t.contact}
                 </h2>
@@ -84,7 +84,7 @@ function getBlogUrl(slug: string) {
                 </a>
                 <p>India</p>
             </div>
-            <div class="info">
+            <div class="footer-info">
                 <h2>{t.links}</h2>
                 <a href={homeUrl}>{t.home}</a>
                 <a href={blogUrl}>{t.blog}</a>
@@ -92,14 +92,14 @@ function getBlogUrl(slug: string) {
                 <a href="https://www.buymeacoffee.com/bibilicious">{t.donate}</a>
             </div>
 
-            <div class="info">
+            <div class="footer-info">
                 <h2>{t.socials}</h2>
                 <a href="">Langmate</a>
                 <a href="">Hello Talk</a>
                 <a href="">Instagram</a>
             </div>
 
-            <div class="info">
+            <div class="footer-info">
                 <h2>{t.recentPosts}</h2>
                 {
                     posts
@@ -124,13 +124,14 @@ function getBlogUrl(slug: string) {
 </footer>
 
 <style>
-    footer {
-        background-color: #FFDAB9;
-        padding: 3rem 0;
+    .footer-container {
+        background-color: #f9f9f9;
+        padding: 3rem 0 2rem;
+        margin-top: 4rem;
         width: 100%;
     }
 
-    .container {
+    .footer-inner {
         display: flex;
         flex-direction: column;
         margin: 0 auto;
@@ -138,14 +139,14 @@ function getBlogUrl(slug: string) {
         max-width: 1200px;
     }
 
-    .top {
+    .footer-top {
         display: flex;
         align-items: center;
         justify-content: center;
         padding-bottom: 2rem;
     }
 
-    .logo {
+    .footer-logo {
         font-size: 2.5rem;
         font-weight: 700;
         color: #000;
@@ -153,18 +154,16 @@ function getBlogUrl(slug: string) {
         font-family: 'Berkshire Swash', sans-serif;
     }
 
-    .wrapper {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+    .footer-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
         margin-bottom: 2rem;
     }
 
-    .info {
-        flex: 1;
-        min-width: 200px;
-        margin-bottom: 1rem;
+    .footer-info {
+        display: flex;
+        flex-direction: column;
     }
 
     h2 {
@@ -192,7 +191,7 @@ function getBlogUrl(slug: string) {
         transition: all 0.2s ease;
     }
 
-    .logo:hover {
+    .footer-logo:hover {
         opacity: 0.8;
         transition: opacity 0.2s ease;
     }
@@ -217,8 +216,13 @@ function getBlogUrl(slug: string) {
         font-weight: 500;
     }
 
-    .japanese-theme {
-        background-color: #fff9f9;
+    .footer-japanese-theme {
+        background-color: #FFF5F5;
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    .footer-japanese-theme .footer-logo {
+        font-family: 'Noto Sans JP', sans-serif;
     }
 
     /* tablet */
@@ -227,11 +231,11 @@ function getBlogUrl(slug: string) {
             max-width: 90%;
         }
         
-        .wrapper {
+        .footer-wrapper {
             gap: 1.5rem;
         }
         
-        .logo {
+        .footer-logo {
             font-size: 2.2rem;
         }
     }
@@ -242,18 +246,18 @@ function getBlogUrl(slug: string) {
             max-width: 95%;
         }
         
-        .top {
+        .footer-top {
             text-align: left;
             padding-bottom: 1.5rem;
         }
         
-        .wrapper {
+        .footer-wrapper {
             flex-direction: row;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
-        .info {
+        .footer-info {
             width: auto;
             flex: 1 1 45%;
             margin-bottom: 1.5rem;

@@ -1,0 +1,67 @@
+---
+// This component ensures that CSS files are loaded correctly
+// It should be included in all pages that need to load CSS files
+---
+
+<script is:inline>
+  // Function to load CSS with proper error handling
+  function loadCssWithFallback(cssPath) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssPath;
+    
+    // Handle loading errors
+    link.onerror = function() {
+      console.warn('Failed to load CSS:', cssPath);
+      
+      // Try different path variations
+      const variations = [
+        cssPath.replace(/^\/_astro\//, '/_astro/'),  // Fix leading slash
+        cssPath.replace(/^_astro\//, '/_astro/'),    // Add leading slash
+        '/dist' + cssPath,                           // Try with /dist prefix
+        cssPath.replace(/^\//, '')                   // Remove leading slash
+      ];
+      
+      // Try each variation
+      variations.forEach(path => {
+        if (path !== cssPath) {
+          const newLink = document.createElement('link');
+          newLink.rel = 'stylesheet';
+          newLink.href = path;
+          document.head.appendChild(newLink);
+        }
+      });
+    };
+    
+    document.head.appendChild(link);
+    return link;
+  }
+  
+  // Load CSS files when the DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get all CSS files from the page
+    const styleLinks = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+    const cssFiles = styleLinks.map(link => link.href);
+    
+    // Check for 404 errors and reload with fallback
+    window.addEventListener('error', function(e) {
+      if (e.target.tagName === 'LINK' && e.target.rel === 'stylesheet') {
+        console.warn('CSS loading error detected:', e.target.href);
+        loadCssWithFallback(e.target.href);
+      }
+    }, true);
+    
+    // Preload known problematic CSS files
+    const knownCssFiles = [
+      '/_astro/index.Dif9_gxa.css',
+      '/_astro/index.CooiVDnR.css',
+      '/_astro/index.q2rJlXE2.css'
+    ];
+    
+    knownCssFiles.forEach(file => {
+      if (!cssFiles.some(url => url.includes(file.replace(/^\//, '')))) {
+        loadCssWithFallback(file);
+      }
+    });
+  });
+</script> 

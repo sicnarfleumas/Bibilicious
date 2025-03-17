@@ -1,11 +1,13 @@
 ---
 import BlogHead from "../components/blog/BlogHead.astro";
-import Header from "../components/layout/Header.jsx";
+import Header from "../components/layout/Header.astro";
 import Hero from "../components/ui/Hero.astro";
 import Footer from "../components/layout/Footer.astro";
 import SchemaOrg from "../components/common/SchemaOrg.astro";
 import { ClientRouter } from 'astro:transitions';
 import JapaneseTheme from '../components/theme/JapaneseTheme.astro';
+import CriticalStyles from '../components/theme/CriticalStyles.astro';
+import CssLoader from '../components/theme/CssLoader.astro';
 import { dissolve, sakuraFade } from '../components/theme/JapaneseTransitions';
 
 const currentLanguage = 'en';
@@ -35,6 +37,8 @@ const breadcrumbs = [
 		<BlogHead title={translations.title} description={translations.description} language={currentLanguage} />
 		<ClientRouter />
 		<JapaneseTheme />
+		<CriticalStyles />
+		<CssLoader />
 		<SchemaOrg
 			type="website"
 			title={translations.title}
@@ -42,9 +46,33 @@ const breadcrumbs = [
 			language={currentLanguage}
 			breadcrumbs={breadcrumbs}
 		/>
+		<!-- Preload CSS script -->
+		<script src="/js/preloadCSS.js" is:inline></script>
+		<!-- Inline styles to ensure basic styling even if CSS fails to load -->
+		<style is:inline>
+			/* Critical fallback styles */
+			body {
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+				margin: 0;
+				padding: 0;
+				line-height: 1.5;
+				color: #333;
+				background-color: #fff;
+			}
+			.bib-header {
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				background-color: rgba(255, 255, 255, 0.9);
+				backdrop-filter: blur(10px);
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+				padding: 0.75rem 0;
+				width: 100%;
+			}
+		</style>
 	</head>
 	<body>
-		<Header currentLanguage={currentLanguage} client:load transition:persist />
+		<Header currentLanguage={currentLanguage} transition:persist />
 		<main>
 			<Hero language={currentLanguage} transition:animate={sakuraFade({ duration: '0.6s' })} />
 		</main>

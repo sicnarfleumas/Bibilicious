@@ -39,7 +39,7 @@ p, .p {
   font-weight: 300;
 }
 
-.logo {
+.bib-logo {
   font-family: 'Berkshire Swash', sans-serif !important;
   text-transform: none !important;
   font-size: 2rem !important;
@@ -57,7 +57,67 @@ p, .p {
     text-align: left;
   }
 
-  .logo {
+  .bib-logo {
     font-size: 2rem;
+  }
+}
+
+/* Critical CSS for the entire site */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body.bib-menu-open {
+  overflow: hidden;
+}
+
+/* Global link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Global box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Global focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid #FF6782;
+  outline-offset: 2px;
+}
+
+/* Global image styles */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Global button reset */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* Global container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
   }
 } 

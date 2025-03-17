@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import type { FormEvent } from 'react';
 import styles from './GoogleNewsletterForm.module.css';
 
@@ -25,7 +25,9 @@ const defaultTranslations = {
     addNameButton: "Add your name",
     hideNameButton: "Hide name field",
     thankYouMessage: "Thank you for subscribing to the newsletter!",
-    subscribeAnother: "Subscribe Another Email"
+    subscribeAnother: "Subscribe Another Email",
+    nameError: "Please enter your name",
+    emailError: "Please enter a valid email address"
   },
   ja: {
     nameLabel: "お名前",
@@ -35,7 +37,9 @@ const defaultTranslations = {
     addNameButton: "名前を追加",
     hideNameButton: "名前フィールドを隠す",
     thankYouMessage: "ニュースレターにご登録いただきありがとうございます！",
-    subscribeAnother: "別のメールを登録"
+    subscribeAnother: "別のメールを登録",
+    nameError: "お名前を入力してください",
+    emailError: "有効なメールアドレスを入力してください"
   },
   ta: {
     nameLabel: "உங்கள் பெயர்",
@@ -45,7 +49,9 @@ const defaultTranslations = {
     addNameButton: "உங்கள் பெயரைச் சேர்க்கவும்",
     hideNameButton: "பெயர் புலத்தை மறைக்கவும்",
     thankYouMessage: "செய்திமடலுக்கு பதிவு செய்தமைக்கு நன்றி!",
-    subscribeAnother: "மற்றொரு மின்னஞ்சலைப் பதிவு செய்யவும்"
+    subscribeAnother: "மற்றொரு மின்னஞ்சலைப் பதிவு செய்யவும்",
+    nameError: "உங்கள் பெயரை உள்ளிடவும்",
+    emailError: "சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்"
   }
 };
 
@@ -62,13 +68,52 @@ const GoogleNewsletterForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const formStartTime = useRef(Date.now());
+  const [honeypotValue, setHoneypotValue] = useState('');
 
   // Get the appropriate translations
   const t = translations || defaultTranslations[language];
   const defaultT = defaultTranslations[language];
 
+  // Validate form fields
+  const validateForm = (): boolean => {
+    const errors: Record<string, string> = {};
+    
+    // Name validation
+    if (!name || name.trim() === '') {
+      errors.name = defaultT.nameError;
+    }
+    
+    // Email validation
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      errors.email = defaultT.emailError;
+    }
+    
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Bot protection checks
+    const timeSinceFormLoad = Date.now() - formStartTime.current;
+    const isTooFast = timeSinceFormLoad < 3000; // Less than 3 seconds is suspicious
+    const hasHoneypot = honeypotValue !== '';
+    
+    if (isTooFast || hasHoneypot) {
+      console.log('Bot submission detected');
+      // Pretend to submit but don't actually do it
+      setIsSubmitted(true);
+      return;
+    }
+    
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
     const form = e.currentTarget;
@@ -84,6 +129,7 @@ const GoogleNewsletterForm = ({
       setIsSubmitted(true);
       setName('');
       setEmail('');
+      setFormErrors({});
     } catch (error) {
       console.error('Error submitting form:', error);
     } finally {
@@ -111,9 +157,10 @@ const GoogleNewsletterForm = ({
               placeholder={t.nameLabel || defaultT.nameLabel}
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={styles.input}
+              className={`${styles.input} ${formErrors.name ? styles.inputError : ''}`}
               required
             />
+            {formErrors.name && <span className={styles.errorMessage}>{formErrors.name}</span>}
           </div>
           
           <div className={styles.inputGroup}>
@@ -125,8 +172,21 @@ const GoogleNewsletterForm = ({
               placeholder={t.emailLabel || defaultT.emailLabel}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={styles.input}
+              className={`${styles.input} ${formErrors.email ? styles.inputError : ''}`}
               required 
+            />
+            {formErrors.email && <span className={styles.errorMessage}>{formErrors.email}</span>}
+          </div>
+          
+          {/* Honeypot field - hidden from real users but bots might fill it */}
+          <div style={{ display: 'none' }}>
+            <input 
+              type="text" 
+              name="website" 
+              id="website" 
+              value={honeypotValue}
+              onChange={(e) => setHoneypotValue(e.target.value)}
+              autoComplete="off"
             />
           </div>
           

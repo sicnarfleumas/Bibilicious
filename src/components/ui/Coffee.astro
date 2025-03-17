@@ -23,6 +23,11 @@ const translations = {
 
 const t = translations[language];
 const coffeeLink = "https://www.buymeacoffee.com/bibilicious";
+
+import { Image } from 'astro:assets';
+// Import the image
+import YupImage from '../../assets/images/Yup.png';
+
 ---
 
 <section class="coffee">
@@ -48,7 +53,15 @@ const coffeeLink = "https://www.buymeacoffee.com/bibilicious";
     </div>
     <div class="wrapper">
         <div class="left">
-            <div class="image-container"></div>
+            <div class="image-container">
+                <Image 
+                    src={YupImage} 
+                    alt="Coffee illustration" 
+                    class="yup-image"
+                    loading="lazy"
+                    format='webp'
+                />
+            </div>
         </div>
         <div class="right">
             <h2 class="title">
@@ -325,10 +338,17 @@ const coffeeLink = "https://www.buymeacoffee.com/bibilicious";
     .image-container {
         width: 100%;
         height: 300px;
-        background: url("../../assets/images/Yup.png") no-repeat center;
-        background-size: contain;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transform: translateY(-5rem);
         transition: transform 0.3s ease;
+    }
+
+    .yup-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
     }
 
     .right {
@@ -378,7 +398,6 @@ const coffeeLink = "https://www.buymeacoffee.com/bibilicious";
         display: inline-block;
         border-radius: 0.5rem;
         overflow: hidden;
-        background: url("../../assets/images/Yup.png") no-repeat center;
     }
 
     .coffee-button:hover {

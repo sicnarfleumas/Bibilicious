@@ -1,0 +1,486 @@
+/* Header styles with unique class names */
+.bibHeader {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background-color: rgba(255, 255, 255, 0.9);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	padding: 0.75rem 0;
+	width: 100%;
+	transition: all 0.3s ease;
+	overflow: visible; /* Prevents scrollbar issues */
+}
+
+.bibHeader.scrolled {
+	padding: 0.5rem 0;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Japanese theme enhancements */
+.japaneseTheme {
+	background-color: rgba(255, 253, 250, 0.9);
+}
+
+.japaneseTheme .bibLogo {
+	font-family: 'Noto Sans JP', sans-serif;
+}
+
+.japaneseTheme .bibNavLink::after {
+	background-color: #ff9eb5;
+}
+
+.japaneseTheme .active {
+	color: #ff6782;
+}
+
+.japaneseTheme .bibLangOption.active {
+	background-color: #ffeef2;
+	color: #ff6782;
+}
+
+/* Overlay for mobile menu */
+.bibOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 15;
+	display: none;
+}
+
+.bibOverlay.show {
+	display: block;
+}
+
+.headerContainer {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.bibLogo {
+	font-family: 'Berkshire Swash', sans-serif;
+	font-size: 1.75rem;
+	font-weight: 700;
+	color: #000;
+	text-decoration: none;
+	z-index: 20;
+	position: relative;
+}
+
+.bibLogo:hover {
+	color: #000;
+}
+
+.bibNav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-grow: 1;
+	margin-left: 3rem;
+}
+
+.navLinks {
+	display: flex;
+	gap: 2rem;
+}
+
+.bibNavLink {
+	position: relative;
+	font-size: 1rem;
+	color: #333;
+	text-decoration: none;
+	padding: 0.5rem 0;
+	transition: color 0.3s ease;
+}
+
+.bibNavLink:hover {
+	color: #FF6782;
+}
+
+.bibNavLink::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: #FF6782;
+	transition: width 0.3s ease;
+}
+
+.bibNavLink:hover::after,
+.bibNavLink.active::after {
+	width: 100%;
+}
+
+.bibNavLink.active {
+	color: #FF6782;
+	font-weight: 500;
+}
+
+.headerRight {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+/* Language dropdown styles */
+.bibLanguageDropdown {
+	position: relative;
+}
+
+.languageCurrent {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.35rem 0.75rem;
+	border-radius: 2rem;
+	font-size: 0.85rem;
+	color: #666;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.languageCurrent:hover {
+	background-color: #f0f0f0;
+}
+
+.languageOptions {
+	position: absolute;
+	top: calc(100% + 5px);
+	right: 0;
+	background: white;
+	border-radius: 0.5rem;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	padding: 0.5rem;
+	display: none;
+	flex-direction: column;
+	min-width: 120px;
+	z-index: 25;
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.languageOptions.show {
+	display: flex;
+}
+
+.bibLangOption {
+	padding: 0.5rem 0.75rem;
+	text-decoration: none;
+	color: #666;
+	border-radius: 0.25rem;
+	transition: all 0.2s ease;
+}
+
+.bibLangOption:hover {
+	background-color: #f0f0f0;
+}
+
+.bibLangOption.active {
+	background-color: #abffb0;
+	color: #333;
+	font-weight: 500;
+}
+
+/* Donate button styles */
+.bibDonateButton {
+	transform: scale(1.05);
+}
+
+.bibBmacButton {
+	background-color: #FF6782;
+	color: white;
+	padding: 0.5rem 1rem;
+	border-radius: 2rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	display: inline-block;
+	box-shadow: 0 2px 8px rgba(255, 103, 130, 0.3);
+}
+
+.bibBmacButton:hover {
+	background-color: #ff4d6b;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(255, 103, 130, 0.4);
+}
+
+.bmacInner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bibText {
+	color: white;
+}
+
+.bibIcon {
+	display: inline-block;
+}
+
+/* Mobile menu toggle */
+.bibMobileMenuToggle {
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 24px;
+	height: 18px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: 20;
+	position: relative;
+}
+
+.bibBar {
+	height: 2px;
+	width: 100%;
+	background-color: #333;
+	border-radius: 2px;
+	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Hamburger to X animation */
+.bibMobileMenuToggle[aria-expanded="true"] .bibBar:nth-child(1) {
+	transform: translateY(8px) rotate(45deg);
+}
+
+.bibMobileMenuToggle[aria-expanded="true"] .bibBar:nth-child(2) {
+	opacity: 0;
+}
+
+.bibMobileMenuToggle[aria-expanded="true"] .bibBar:nth-child(3) {
+	transform: translateY(-8px) rotate(-45deg);
+}
+
+.bibSrOnly {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* Mobile menu close button */
+.bibMobileMenuClose {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	background: #f5f5f5;
+	border: none;
+	cursor: pointer;
+	color: #333;
+	padding: 0.5rem;
+	margin-bottom: 2rem;
+	transition: all 0.3s ease;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+}
+
+.bibMobileMenuClose:hover {
+	background-color: #eaeaea;
+	color: #FF6782;
+}
+
+.bibMobileMenuClose svg {
+	width: 20px;
+	height: 20px;
+}
+
+/* Mobile menu styles - improved */
+@media screen and (max-width: 768px) {
+	.headerContainer {
+		padding: 0 1rem;
+	}
+	
+	.bibLogo {
+		font-size: 1.5rem;
+	}
+	
+	.bibMobileMenuToggle {
+		display: flex;
+	}
+	
+	.bibMobileMenuClose {
+		display: flex;
+	}
+	
+	.bibNav {
+		position: fixed;
+		top: 0;
+		right: -100%;
+		width: 100%; /* Full width for better focus */
+		height: 100vh;
+		background-color: white;
+		flex-direction: column;
+		justify-content: center; /* Center content vertically */
+		padding: 5rem 2rem;
+		box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+		transition: right 0.3s ease;
+		overflow-y: auto;
+		z-index: 16;
+		margin-left: 0;
+		align-items: center; /* Center items horizontally */
+	}
+	
+	.bibNav.open {
+		right: 0;
+	}
+	
+	.navLinks {
+		flex-direction: column;
+		width: 100%;
+		gap: 1.5rem; /* Increased gap for better spacing */
+		margin-bottom: 3rem;
+		align-items: center; /* Center items */
+	}
+	
+	.bibNavLink {
+		font-size: 1.5rem; /* Larger font size for better visibility */
+		width: 100%;
+		padding: 0.75rem 0;
+		border-bottom: 1px solid #f0f0f0;
+		text-align: center; /* Center text */
+	}
+	
+	.headerRight {
+		flex-direction: column;
+		width: 100%;
+		gap: 2rem; /* Increased gap */
+		align-items: center; /* Center items */
+	}
+	
+	.bibLanguageDropdown {
+		width: 100%;
+		max-width: 300px; /* Limit width for better appearance */
+	}
+	
+	.languageCurrent {
+		width: 100%;
+		justify-content: space-between;
+		padding: 0.75rem 1rem;
+		background-color: #f5f5f5; /* Added background for better contrast */
+		border-radius: 0.5rem;
+		font-size: 1rem;
+		font-weight: 500;
+		color: #333; /* Darker text for better contrast */
+	}
+	
+	.languageOptions {
+		position: relative;
+		width: 100%;
+		top: 0.5rem;
+		left: 0;
+		right: auto;
+		margin-top: 0;
+		background-color: #ffffff;
+		border: 1px solid #eaeaea;
+	}
+	
+	.bibLangOption {
+		padding: 0.75rem 1rem;
+		font-size: 1rem;
+		color: #333; /* Darker text for better contrast */
+		border-bottom: 1px solid #f5f5f5;
+	}
+	
+	.bibLangOption:last-child {
+		border-bottom: none;
+	}
+	
+	.bibLangOption:hover {
+		background-color: #f9f9f9;
+	}
+	
+	.bibLangOption.active {
+		background-color: #e6f7e6; /* Lighter background for better contrast */
+		color: #2a7d2a; /* Darker green for better contrast */
+		font-weight: 600;
+	}
+	
+	.bibDonateButton {
+		width: 100%;
+		transform: none;
+		max-width: 300px; /* Limit width for better appearance */
+	}
+	
+	.bibBmacButton {
+		width: 100%;
+		text-align: center;
+		padding: 0.75rem 1rem;
+		font-size: 1.1rem;
+	}
+	
+	.bibText {
+		color: white;
+		font-weight: 600;
+	}
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+	.headerContainer {
+		padding: 0 0.75rem;
+	}
+	
+	.bibLogo {
+		font-size: 1.3rem;
+	}
+	
+	.bibNav {
+		padding: 5rem 1.5rem;
+	}
+	
+	.bibNavLink {
+		font-size: 1.3rem;
+	}
+	
+	.bibBmacButton {
+		padding: 0.6rem 1rem;
+		font-size: 1rem;
+	}
+}
+
+/* Tablet adjustments */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.headerContainer {
+		padding: 0 1.5rem;
+	}
+
+	.bibNav {
+		margin-left: 2rem;
+	}
+
+	.navLinks {
+		gap: 1.5rem;
+	}
+}
+
+.bibLangText {
+	color: #333;
+} 

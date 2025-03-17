@@ -41,6 +41,21 @@
   box-shadow: 0 0 0 2px rgba(255, 103, 130, 0.2);
 }
 
+.inputError {
+  border-color: #dc3545;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+}
+
+.errorMessage {
+  color: #dc3545;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
 .button {
   background: #FF6782;
   color: #fff;
@@ -106,5 +121,9 @@
   .input, .button {
     font-size: 0.875rem;
     padding: 0.625rem 1rem;
+  }
+  
+  .errorMessage {
+    font-size: 0.7rem;
   }
 } 

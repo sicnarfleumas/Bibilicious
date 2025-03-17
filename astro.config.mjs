@@ -8,6 +8,7 @@ import netlify from '@astrojs/netlify';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bibilicious.blog',
+  base: '/',
   integrations: [
     mdx(), 
     sitemap({
@@ -38,4 +39,8 @@ export default defineConfig({
   content: {
     configPath: './src/content.config.ts',
   },
+  build: {
+    assets: '_astro',
+    assetsPrefix: '/'
+  }
 });

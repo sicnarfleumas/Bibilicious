@@ -5,6 +5,11 @@
 (function(w) {
   // Define loadCSS function
   w.loadCSS = function(href, before, media) {
+    // Ensure proper path resolution
+    if (href.startsWith('/_astro/') && !href.startsWith('/')) {
+      href = '/' + href;
+    }
+    
     // Create link element
     var ss = w.document.createElement("link");
     var ref = before || w.document.getElementsByTagName("head")[0];
@@ -45,5 +50,17 @@
       var link = preloadLinks[i];
       w.loadCSS(link.href);
     }
+    
+    // Add error handling for CSS loading
+    w.addEventListener('error', function(e) {
+      if (e.target.tagName === 'LINK' && e.target.rel === 'stylesheet') {
+        console.warn('CSS loading error:', e.target.href);
+        // Try to reload with corrected path
+        if (e.target.href.includes('_astro')) {
+          var correctedHref = e.target.href.replace(/\/_astro\//, '/_astro/');
+          w.loadCSS(correctedHref);
+        }
+      }
+    }, true);
   });
 })(window); 

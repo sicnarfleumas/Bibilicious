@@ -1,6 +1,6 @@
 ---
 import BlogHead from "../../components/blog/BlogHead.astro";
-import Header from "../../components/layout/Header.jsx";
+import Header from "../../components/layout/Header.astro";
 import Hero from "../../components/ui/Hero.astro";
 import Footer from "../../components/layout/Footer.astro";
 import SchemaOrg from "../../components/common/SchemaOrg.astro";
@@ -44,7 +44,7 @@ const breadcrumbs = [
 		/>
 	</head>
 	<body>
-		<Header currentLanguage={currentLanguage} client:load transition:persist />
+		<Header currentLanguage={currentLanguage} transition:persist />
 		<main>
 			<Hero language={currentLanguage} transition:animate={sakuraFade({ duration: '0.6s' })} />
 			<Footer language={currentLanguage} transition:animate={dissolve({ duration: '0.4s' })} />
