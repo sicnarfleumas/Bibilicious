@@ -1,0 +1,80 @@
+---
+import BaseHead from '../components/common/BaseHead.astro';
+import Header from '../components/layout/header/header';
+import Footer from '../components/layout/Footer.astro';
+import { getLanguageFromURL } from '../i18n/utils';
+
+const { lang } = Astro.params;
+const currentLang = getLanguageFromURL(Astro.url.pathname, lang) as 'en' | 'ja' | 'ta';
+
+type Translation = {
+  title: string;
+  message: string;
+  backHome: string;
+  errorCode: string;
+  description: string;
+};
+
+type Translations = {
+  [key: string]: Translation;
+};
+
+const translations: Translations = {
+  en: {
+    title: "Page Not Found",
+    message: "Sorry, we couldn't find the page you're looking for.",
+    backHome: "Back to Homepage",
+    errorCode: "404",
+    description: "The page you're looking for doesn't exist or has been moved."
+  },
+  ja: {
+    title: "ページが見つかりません",
+    message: "申し訳ありませんが、お探しのページは見つかりませんでした。",
+    backHome: "ホームページに戻る",
+    errorCode: "404",
+    description: "お探しのページは存在しないか、移動された可能性があります。"
+  },
+  ta: {
+    title: "பக்கம் கிடைக்கவில்லை",
+    message: "மன்னிக்கவும், நீங்கள் தேடும் பக்கம் எங்களிடம் இல்லை.",
+    backHome: "முகப்புக்கு திரும்ப",
+    errorCode: "404",
+    description: "நீங்கள் தேடும் பக்கம் இல்லை அல்லது மாற்றப்பட்டிருக்கலாம்."
+  }
+};
+
+const t = translations[currentLang] || translations.en;
+---
+
+<!DOCTYPE html>
+<html lang={currentLang}>
+  <head>
+    <BaseHead title={t.title} description={t.description} language={currentLang} />
+  </head>
+  <body>
+    <Header currentLanguage={currentLang} pathname={Astro.url.pathname} />
+    <main class="container mx-auto px-4 py-16 text-center">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="text-6xl font-bold text-gray-900 mb-4">{t.errorCode}</h1>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">{t.title}</h2>
+        <p class="text-xl text-gray-600 mb-8">{t.message}</p>
+        <a
+          href={`/${currentLang}`}
+          class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+        >
+          {t.backHome}
+        </a>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style> 

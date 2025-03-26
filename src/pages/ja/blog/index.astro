@@ -5,26 +5,23 @@ import Footer from '../../../components/layout/Footer.astro';
 import Coffee from '../../../components/ui/Coffee.astro';
 import FormattedDate from '../../../components/blog/FormattedDate.astro';
 import SchemaOrg from '../../../components/common/SchemaOrg.astro';
-import ReadMore from '../../../components/blog/ReadMore.astro';
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
 import { getCollection } from 'astro:content';
 
 import { ViewTransitions } from 'astro:transitions';
 
-const currentLanguage = 'ja';
-
-// Get posts for Japanese language
+// Get posts for Japanese
 const allPosts = await getCollection('blog');
 const posts = allPosts
-  .filter(post => post.data.language === currentLanguage)
+  .filter(post => post.data.language === 'ja')
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Japanese translations
+// Translations for UI elements
 const translations = {
-  title: "ビビリシャスブログ | 英語 ⇄ 日本語翻訳",
-  description: "日本語学習、翻訳のヒント、個人的な経験についての記事をお読みください。",
-  latestPosts: '🌸 最新の記事:',
+  title: "Bibilicious Blog | 英語 ⇄ 日本語 翻訳",
+  description: "日本語学習、翻訳のコツ、個人の経験についての記事を読む。",
+  latestPosts: '🌸 最新記事:',
   readMore: '続きを読む',
 };
 
@@ -50,7 +47,7 @@ const jaDescription = 'ビビリシャスへようこそ。英語、日本語、
 ---
 
 <!doctype html>
-<html lang={currentLanguage}>
+<html lang="ja">
 	<head>
 		<!-- Google Tag Manager -->
 		<script type="text/partytown">
@@ -61,14 +58,14 @@ const jaDescription = 'ビビリシャスへようこそ。英語、日本語、
 			})(window,document,'script','dataLayer','GTM-MMXWL72L');
 		</script>
 		<!-- End Google Tag Manager -->
-		<BlogHead title={translations.title} description={translations.description} language={currentLanguage} />
+		<BlogHead title={translations.title} description={translations.description} language="ja" />
 		<ViewTransitions/>
 		<!-- Schema.org structured data -->
 		<SchemaOrg 
 			type="blog"
 			title={translations.title}
 			description={translations.description}
-			language={currentLanguage}
+			language="ja"
 			breadcrumbs={breadcrumbs}
 		/>
 	</head>
@@ -80,36 +77,38 @@ const jaDescription = 'ビビリシャスへようこそ。英語、日本語、
 		</noscript>
 	<!-- End Google Tag Manager (noscript) -->
 		<main>
-		<Header currentLanguage={currentLanguage} transition:persist />
+		<Header currentLanguage="ja" transition:persist />
 
 			<section>
 				<h1>{translations.latestPosts}</h1>
 				<ul>
 					{
-						posts.map((post) => (
-							<li>
-								<a href={`/ja/blog/${post.slug}/`}>
-									<div class="title" transition:name={`blog_title_${post.slug}`}>
-										<h2>{post.data.title}</h2>
-									</div>
-									<div class="date" transition:name={`blog_date_${post.slug}`}>
-										<FormattedDate date={post.data.pubDate} language={currentLanguage} />
-									</div>
-									<div class="description">
-										<p>{post.data.description}</p>
-									</div>
-									<div class="read-more">
-										{translations.readMore} →
-									</div>
-								</a>
-							</li>
-						))
+						posts.map((post) => {
+							const href = `/ja/blog/${post.slug}/`;
+							return (
+								<li>
+									<a href={href}>
+										<div class="title" transition:name={`blog_title_${post.slug}`}>
+											<h2>{post.data.title}</h2>
+										</div>
+										<div class="date" transition:name={`blog_date_${post.slug}`}>
+											<FormattedDate date={post.data.pubDate} language="ja" />
+										</div>
+										<div class="description">
+											<p>{post.data.description}</p>
+										</div>
+										<div class="read-more">
+											{translations.readMore} →
+										</div>
+									</a>
+								</li>
+							);
+						})
 					}
 				</ul>
 			</section>
-			<Coffee language={currentLanguage} />
-			<ReadMore language={currentLanguage} />
-			<Footer language={currentLanguage} />
+			<Coffee language="ja" />
+			<Footer language="ja" />
 		</main>
 	</body>
 </html>
@@ -172,6 +171,7 @@ const jaDescription = 'ビビリシャスへようこそ。英語、日本語、
 		text-decoration: none;
 		transition: 0.2s ease;
 	}
+	
 	
 	ul li:hover {
 		transition: 0.2s ease;

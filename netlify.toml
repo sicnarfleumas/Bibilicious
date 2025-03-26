@@ -95,4 +95,61 @@
   for = "/.env"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
-    Content-Type = "text/plain" 
+    Content-Type = "text/plain"
+
+# Handle 5xx errors
+[[redirects]]
+  from = "/*"
+  to = "/error.html"
+  status = 500
+  force = false
+
+[[redirects]]
+  from = "/*"
+  to = "/error.html"
+  status = 502
+  force = false
+
+[[redirects]]
+  from = "/*"
+  to = "/error.html"
+  status = 503
+  force = false
+
+[[redirects]]
+  from = "/*"
+  to = "/error.html"
+  status = 504
+  force = false
+
+[[redirects]]
+  from = "/*"
+  to = "/error.html"
+  status = 505
+  force = false
+
+# Blog language redirects for 4xx errors
+[[redirects]]
+  from = "/ja/ta"
+  to = "/ja/blog"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/ta/ta"
+  to = "/ta/blog"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/ta/ja"
+  to = "/ja/blog"
+  status = 301
+  force = false
+
+# Japanese blog post redirect
+[[redirects]]
+  from = "/blog/独学で日本語スピーキングを練習する方法"
+  to = "/ja/blog/独学で日本語スピーキングを練習する方法"
+  status = 301
+  force = false 

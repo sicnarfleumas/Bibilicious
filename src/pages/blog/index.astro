@@ -5,7 +5,6 @@ import Footer from '../../components/layout/Footer.astro';
 import Coffee from '../../components/ui/Coffee.astro';
 import FormattedDate from '../../components/blog/FormattedDate.astro';
 import SchemaOrg from '../../components/common/SchemaOrg.astro';
-import ReadMore from '../../components/blog/ReadMore.astro';
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
@@ -113,12 +112,10 @@ const breadcrumbs = [
 				</ul>
 			</section>
 			<Coffee language={currentLanguage} />
-			<ReadMore language={currentLanguage} />
 			<Footer language={currentLanguage} />
 		</main>
 	</body>
 </html>
-
 
 <style>
 	h1 {
@@ -156,8 +153,6 @@ const breadcrumbs = [
 		background-color: white;
 		padding: 2.5rem;
 		border-radius: 1.5rem;
-
-
 	}
 
 	ul {
@@ -175,11 +170,10 @@ const breadcrumbs = [
 	ul li:first-child {
 		width: 100%;
 		background: rgba(255, 103, 130, 0.72);
-}
+	}
 	ul li * {
 		text-decoration: none;
 		transition: 0.2s ease;
-		
 	}
 	
 	
@@ -205,11 +199,5 @@ const breadcrumbs = [
 		section {
 			padding: 2.5% 5%;
 		}
-
-		
 	}
-	
-
-	
-	
 </style>

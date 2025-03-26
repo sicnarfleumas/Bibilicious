@@ -5,26 +5,23 @@ import Footer from '../../../components/layout/Footer.astro';
 import Coffee from '../../../components/ui/Coffee.astro';
 import FormattedDate from '../../../components/blog/FormattedDate.astro';
 import SchemaOrg from '../../../components/common/SchemaOrg.astro';
-import ReadMore from '../../../components/blog/ReadMore.astro';
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
 import { getCollection } from 'astro:content';
 
 import { ViewTransitions } from 'astro:transitions';
 
-const currentLanguage = 'ta';
-
-// Get posts for Tamil language
+// Get posts for Tamil
 const allPosts = await getCollection('blog');
 const posts = allPosts
-  .filter(post => post.data.language === currentLanguage)
+  .filter(post => post.data.language === 'ta')
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Tamil translations
+// Translations for UI elements
 const translations = {
-  title: "பிபிலிசியஸ் வலைப்பதிவு | ஆங்கிலம் ⇄ ஜப்பானிய மொழிபெயர்ப்பு",
-  description: "ஜப்பானிய மொழி கற்றல், மொழிபெயர்ப்பு குறிப்புகள் மற்றும் தனிப்பட்ட அனுபவங்கள் பற்றிய கட்டுரைகளைப் படிக்கவும்.",
-  latestPosts: '🌸 சமீபத்திய பதிவுகள்:',
+  title: "Bibilicious Blog | ஆங்கிலம் ⇄ தமிழ் மொழிபெயர்ப்பு",
+  description: "ஜப்பானிய மொழி கற்றல், மொழிபெயர்ப்பு உதவிக்குறிப்புகள் மற்றும் தனிப்பட்ட அனுபவங்களைப் பற்றிய கட்டுரைகளைப் படியுங்கள்.",
+  latestPosts: '🌸 சமீபத்திய கட்டுரைகள்:',
   readMore: 'மேலும் படிக்க',
 };
 
@@ -43,14 +40,10 @@ const breadcrumbs = [
     "item": "https://bibilicious.com/ta/blog"
   }
 ];
-
-// Tamil title and description
-const taTitle = 'பிபிலிசியஸ் | ஆங்கிலம் ⇄ ஜப்பானிய மொழிபெயர்ப்பு';
-const taDescription = 'பிபிலிசியஸுக்கு வரவேற்கிறோம். ஆங்கிலம், ஜப்பானிய மற்றும் தமிழ் மொழிகளின் பாலம்.';
 ---
 
 <!doctype html>
-<html lang={currentLanguage}>
+<html lang="ta">
 	<head>
 		<!-- Google Tag Manager -->
 		<script type="text/partytown">
@@ -61,14 +54,14 @@ const taDescription = 'பிபிலிசியஸுக்கு வரவ�
 			})(window,document,'script','dataLayer','GTM-MMXWL72L');
 		</script>
 		<!-- End Google Tag Manager -->
-		<BlogHead title={translations.title} description={translations.description} language={currentLanguage} />
+		<BlogHead title={translations.title} description={translations.description} language="ta" />
 		<ViewTransitions/>
 		<!-- Schema.org structured data -->
 		<SchemaOrg 
 			type="blog"
 			title={translations.title}
 			description={translations.description}
-			language={currentLanguage}
+			language="ta"
 			breadcrumbs={breadcrumbs}
 		/>
 	</head>
@@ -80,36 +73,38 @@ const taDescription = 'பிபிலிசியஸுக்கு வரவ�
 		</noscript>
 	<!-- End Google Tag Manager (noscript) -->
 		<main>
-		<Header currentLanguage={currentLanguage} transition:persist />
+		<Header currentLanguage="ta" transition:persist />
 
 			<section>
 				<h1>{translations.latestPosts}</h1>
 				<ul>
 					{
-						posts.map((post) => (
-							<li>
-								<a href={`/ta/blog/${post.slug}/`}>
-									<div class="title" transition:name={`blog_title_${post.slug}`}>
-										<h2>{post.data.title}</h2>
-									</div>
-									<div class="date" transition:name={`blog_date_${post.slug}`}>
-										<FormattedDate date={post.data.pubDate} language={currentLanguage} />
-									</div>
-									<div class="description">
-										<p>{post.data.description}</p>
-									</div>
-									<div class="read-more">
-										{translations.readMore} →
-									</div>
-								</a>
-							</li>
-						))
+						posts.map((post) => {
+							const href = `/ta/blog/${post.slug}/`;
+							return (
+								<li>
+									<a href={href}>
+										<div class="title" transition:name={`blog_title_${post.slug}`}>
+											<h2>{post.data.title}</h2>
+										</div>
+										<div class="date" transition:name={`blog_date_${post.slug}`}>
+											<FormattedDate date={post.data.pubDate} language="ta" />
+										</div>
+										<div class="description">
+											<p>{post.data.description}</p>
+										</div>
+										<div class="read-more">
+											{translations.readMore} →
+										</div>
+									</a>
+								</li>
+							);
+						})
 					}
 				</ul>
 			</section>
-			<Coffee language={currentLanguage} />
-			<ReadMore language={currentLanguage} />
-			<Footer language={currentLanguage} />
+			<Coffee language="ta" />
+			<Footer language="ta" />
 		</main>
 	</body>
 </html>
@@ -172,6 +167,7 @@ const taDescription = 'பிபிலிசியஸுக்கு வரவ�
 		text-decoration: none;
 		transition: 0.2s ease;
 	}
+	
 	
 	ul li:hover {
 		transition: 0.2s ease;
