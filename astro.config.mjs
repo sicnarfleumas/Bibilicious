@@ -2,8 +2,6 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
-import netlify from '@astrojs/netlify';
-
 
 // https://astro.build/config
 export default defineConfig({
@@ -33,12 +31,7 @@ export default defineConfig({
   experiments: {
     api: true
   },
-  output: 'server',
-  adapter: netlify(),
-  // Configure content collections to use the new content.config.ts file
-  content: {
-    configPath: './src/content.config.ts',
-  },
+  output: 'static',
   build: {
     assets: '_astro',
     assetsPrefix: '/'

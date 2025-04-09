@@ -1,8 +1,7 @@
 ---
-layout: ../layouts/BlogPost.astro
+layout: ../layouts/StaticPage.astro
 title: Security Policy
 description: Security policy for Bibilicious
-pubDate: 2023-03-16
 ---
 
 # Security Policy
